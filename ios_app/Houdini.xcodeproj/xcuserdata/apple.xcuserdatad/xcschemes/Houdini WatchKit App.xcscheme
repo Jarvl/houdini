@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1812E9C01BD2150F0059B99C"
-               BuildableName = "Houdini WatchKit Extension.appex"
-               BlueprintName = "Houdini WatchKit Extension"
+               BlueprintIdentifier = "1812E99A1BD2150F0059B99C"
+               BuildableName = "Houdini.app"
+               BlueprintName = "Houdini"
                ReferencedContainer = "container:Houdini.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1812E99A1BD2150F0059B99C"
-               BuildableName = "Houdini.app"
-               BlueprintName = "Houdini"
+               BlueprintIdentifier = "1812E9C01BD2150F0059B99C"
+               BuildableName = "Houdini WatchKit Extension.appex"
+               BlueprintName = "Houdini WatchKit Extension"
                ReferencedContainer = "container:Houdini.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -6,10 +6,11 @@
 //  Copyright © 2015 lufinkey. All rights reserved.
 //
 
-#import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
+#import <WatchKit/WatchKit.h>
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface InterfaceController : WKInterfaceController
+@interface InterfaceController : WKInterfaceController<WCSessionDelegate>
 
 - (IBAction)onButtonPress;
 @end

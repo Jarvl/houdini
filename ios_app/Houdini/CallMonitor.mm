@@ -15,8 +15,8 @@
 {
 	CTCall* _mainCall;
 	BOOL _calling;
-	__strong CTCallCenter* _callCenter;
-	__strong void(^_eventHandler)(CTCall*);
+	CTCallCenter* _callCenter;
+	void(^_eventHandler)(CTCall*);
 	BOOL _callConnected;
 	std::chrono::system_clock::time_point _callStartTime;
 }

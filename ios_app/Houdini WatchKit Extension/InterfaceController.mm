@@ -7,6 +7,8 @@
 //
 
 #import "InterfaceController.h"
+#include "Globals.h"
+#include "Utils.h"
 
 
 @interface InterfaceController()
@@ -20,12 +22,21 @@
 	[super awakeWithContext:context];
 	
 	// Configure interface objects here.
+	if([WCSession isSupported])
+	{
+		WCSession* session = [WCSession defaultSession];
+		[session setDelegate:self];
+		[session activateSession];
+	}
+	else
+	{
+		NSLog(@"Error WCSession is unsupported");
+	}
 }
 
 - (void)willActivate {
 	// This method is called when watch view controller is about to be visible to user
 	[super willActivate];
-
 }
 
 - (void)didDeactivate {
@@ -34,7 +45,12 @@
 }
 
 - (IBAction)onButtonPress {
-	//
+	NSLog(@"button has been pressed");
+	
+	NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+	[dict setObject:@"requestcall" forKey:@"action"];
+	WCSession* session = [WCSession defaultSession];
+	[session sendMessage:dict replyHandler:nil errorHandler:nil];
 }
 @end
 

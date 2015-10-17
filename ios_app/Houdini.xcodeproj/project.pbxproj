@@ -9,20 +9,24 @@
 /* Begin PBXBuildFile section */
 		1812E9A01BD2150F0059B99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E99F1BD2150F0059B99C /* main.m */; };
 		1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A21BD2150F0059B99C /* AppDelegate.m */; };
-		1812E9A61BD2150F0059B99C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* ViewController.mm */; };
-		1812E9A91BD2150F0059B99C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9A71BD2150F0059B99C /* Main.storyboard */; };
+		1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* MainViewController.mm */; };
 		1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AA1BD2150F0059B99C /* Assets.xcassets */; };
-		1812E9AE1BD2150F0059B99C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */; };
 		1812E9B31BD2150F0059B99C /* Houdini WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */; };
 		1812E9B91BD2150F0059B99C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9B71BD2150F0059B99C /* Interface.storyboard */; };
 		1812E9BB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9BA1BD2150F0059B99C /* Assets.xcassets */; };
 		1812E9C21BD2150F0059B99C /* Houdini WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1812E9CA1BD215100059B99C /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9C91BD215100059B99C /* InterfaceController.m */; };
+		1812E9CA1BD215100059B99C /* InterfaceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9C91BD215100059B99C /* InterfaceController.mm */; };
 		1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CC1BD215100059B99C /* ExtensionDelegate.m */; };
 		1812E9D01BD215100059B99C /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CF1BD215100059B99C /* NotificationController.m */; };
 		1812E9D21BD215100059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9D11BD215100059B99C /* Assets.xcassets */; };
 		18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */; };
 		18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */; settings = {ASSET_TAGS = (); }; };
+		18C0D1DB1BD2A74300BC52E8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */; settings = {ASSET_TAGS = (); }; };
+		18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		18C0D1F51BD2EC7400BC52E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */; };
+		18C0D1F71BD2ECC400BC52E8 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */; };
+		18C0D1FB1BD2ED1A00BC52E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */; };
 		18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */; };
 		18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F2621BD268980023DA82 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
@@ -74,11 +78,9 @@
 		1812E99F1BD2150F0059B99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1812E9A11BD2150F0059B99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1812E9A21BD2150F0059B99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1812E9A41BD2150F0059B99C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1812E9A51BD2150F0059B99C /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		1812E9A81BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1812E9A41BD2150F0059B99C /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1812E9A51BD2150F0059B99C /* MainViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
 		1812E9AA1BD2150F0059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1812E9AD1BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1812E9AF1BD2150F0059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Houdini WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1812E9B81BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Houdini WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1812E9C71BD215100059B99C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1812E9C81BD215100059B99C /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
-		1812E9C91BD215100059B99C /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		1812E9C91BD215100059B99C /* InterfaceController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InterfaceController.mm; sourceTree = "<group>"; };
 		1812E9CB1BD215100059B99C /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
 		1812E9CC1BD215100059B99C /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
 		1812E9CE1BD215100059B99C /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
@@ -97,6 +99,16 @@
 		18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallMonitor.h; sourceTree = "<group>"; };
 		18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallMonitor.mm; sourceTree = "<group>"; };
+		18C0D1D41BD29E2800BC52E8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		18C0D1D91BD2A74300BC52E8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
+		18C0D1DD1BD2ABB600BC52E8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		18C0D1DF1BD2B12600BC52E8 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoginViewController.mm; sourceTree = "<group>"; };
+		18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
+		18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18D6F2621BD268980023DA82 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -106,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C0D1F71BD2ECC400BC52E8 /* WatchKit.framework in Frameworks */,
+				18C0D1F51BD2EC7400BC52E8 /* WatchConnectivity.framework in Frameworks */,
 				18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */,
 				18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */,
 				18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */,
@@ -116,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C0D1FB1BD2ED1A00BC52E8 /* WatchConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,27 +161,24 @@
 		1812E99D1BD2150F0059B99C /* Houdini */ = {
 			isa = PBXGroup;
 			children = (
+				18C0D1DF1BD2B12600BC52E8 /* Globals.h */,
+				18C0D1DD1BD2ABB600BC52E8 /* Utils.h */,
+				18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */,
 				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
 				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
 				1812E9A21BD2150F0059B99C /* AppDelegate.m */,
-				1812E9A41BD2150F0059B99C /* ViewController.h */,
-				1812E9A51BD2150F0059B99C /* ViewController.mm */,
-				1812E9A71BD2150F0059B99C /* Main.storyboard */,
+				1812E9A41BD2150F0059B99C /* MainViewController.h */,
+				1812E9A51BD2150F0059B99C /* MainViewController.mm */,
+				18C0D1D41BD29E2800BC52E8 /* LoginViewController.h */,
+				18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */,
+				18C0D1D91BD2A74300BC52E8 /* HomeViewController.h */,
+				18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */,
+				1812E99F1BD2150F0059B99C /* main.m */,
 				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
-				1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */,
 				1812E9AF1BD2150F0059B99C /* Info.plist */,
-				1812E99E1BD2150F0059B99C /* Supporting Files */,
 			);
 			path = Houdini;
-			sourceTree = "<group>";
-		};
-		1812E99E1BD2150F0059B99C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1812E99F1BD2150F0059B99C /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		1812E9B61BD2150F0059B99C /* Houdini WatchKit App */ = {
@@ -183,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				1812E9C81BD215100059B99C /* InterfaceController.h */,
-				1812E9C91BD215100059B99C /* InterfaceController.m */,
+				1812E9C91BD215100059B99C /* InterfaceController.mm */,
 				1812E9CB1BD215100059B99C /* ExtensionDelegate.h */,
 				1812E9CC1BD215100059B99C /* ExtensionDelegate.m */,
 				1812E9CE1BD215100059B99C /* NotificationController.h */,
@@ -206,6 +218,9 @@
 		18D6F2611BD2559B0023DA82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */,
+				18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */,
+				18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */,
 				18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */,
 				18D6F2621BD268980023DA82 /* AddressBook.framework */,
 				18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */,
@@ -322,9 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1812E9AE1BD2150F0059B99C /* LaunchScreen.storyboard in Resources */,
 				1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */,
-				1812E9A91BD2150F0059B99C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,9 +366,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */,
-				1812E9A61BD2150F0059B99C /* ViewController.mm in Sources */,
+				1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */,
+				18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */,
 				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,
+				18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */,
 				1812E9A01BD2150F0059B99C /* main.m in Sources */,
+				18C0D1DB1BD2A74300BC52E8 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */,
-				1812E9CA1BD215100059B99C /* InterfaceController.m in Sources */,
+				1812E9CA1BD215100059B99C /* InterfaceController.mm in Sources */,
 				1812E9D01BD215100059B99C /* NotificationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,22 +401,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1812E9A71BD2150F0059B99C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1812E9A81BD2150F0059B99C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1812E9AD1BD2150F0059B99C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		1812E9B71BD2150F0059B99C /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -568,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;
@@ -582,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;

@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <Contacts/Contacts.h>
 #import "CallMonitor.h"
+#import "LoginViewController.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface ViewController : UIViewController<CallMonitorDelegate>
+@interface MainViewController : UIViewController<CallMonitorDelegate, LoginViewControllerDelegate, WCSessionDelegate>
 
 -(CNMutableContact*)contactAddFirstName:(NSString*)firstName lastName:(NSString*)lastName number:(NSString*)number;
 -(void)contactRemove:(CNMutableContact*)contact;
 
 -(BOOL)beginTrackingCallToNumber:(NSString*)number;
+
+-(BOOL)loginRequired;
 
 @end
 
