@@ -179,6 +179,13 @@ router.post('/signup', function(req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
 
+    Users.findOne({username: username}).exec(function(err, user){
+        helpers.logError(err);
+        if (user) {
+            res.send("You're already signed up bruh.");
+        }
+    });
+
     // Hash the password
     var hash = bcrypt.hashSync(password, secrets.passwordSeed);
 
@@ -212,6 +219,7 @@ router.post('/login', function(req, res) {
 
     query.then(function(err, user) {
         helpers.logError(err);
+        console.log(user);
 
         var hash = bcrypt.hashSync(password, secrets.passwordSeed);
         // Set session if passwords match
