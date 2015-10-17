@@ -137,16 +137,14 @@ router.post('/connectStripe', function(req, res) {
 });
 
 router.get('/stripeConfirmation', function(req, res) {
-    var error = req.query.error;
-    var errorDescription = req.query.error_description;
-
-    var stripeCode = req.query.code;
-    var stripeEmail = req.session.stripeEmail;
-
-    if (error == "access_denied") {
+    if (req.query.error) {
+        var errorDescription = req.query.error_description;
         res.send(errorDescription);
     }
-    else if (code.length > 0) {
+    else if (req.query.code) {
+        var stripeCode = req.query.code;
+        var stripeEmail = req.session.stripeEmail;
+
         // Store user code
         Users.findOneAndUpdate({
             stripeEmail: stripeEmail
@@ -157,6 +155,7 @@ router.get('/stripeConfirmation', function(req, res) {
             }
         }, function(err) {
             if (err) console.log(err);
+            res.send('Account connected!');
         });
     }
 });
