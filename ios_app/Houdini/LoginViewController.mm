@@ -78,7 +78,7 @@
 	[_loadingView setHidden:NO];
 	[_loadingView startAnimating];
 	
-	HoudiniAPI::login([username UTF8String], [password UTF8String], [self](BOOL success, NSError* error){
+	HoudiniAPI::login([username UTF8String], [password UTF8String], [self](bool success, NSError* error){
 		[_usernameField setEnabled:YES];
 		[_passwordField setEnabled:YES];
 		[_loginButton setEnabled:YES];

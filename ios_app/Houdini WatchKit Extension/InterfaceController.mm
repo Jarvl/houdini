@@ -48,6 +48,7 @@
 	NSMutableDictionary* dict = [NSMutableDictionary dictionary];
 	[dict setObject:@"requestcall" forKey:@"action"];
 	WCSession* session = [WCSession defaultSession];
+	
 	[session sendMessage:dict replyHandler:nil errorHandler:nil];
 }
 @end

@@ -22,14 +22,13 @@
 		18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */; };
 		18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */; settings = {ASSET_TAGS = (); }; };
-		18C0D1DB1BD2A74300BC52E8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		18C0D1DB1BD2A74300BC52E8 /* HomeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DA1BD2A74300BC52E8 /* HomeViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1F51BD2EC7400BC52E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */; };
 		18C0D1F71BD2ECC400BC52E8 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */; };
 		18C0D1FB1BD2ED1A00BC52E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */; };
 		18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */; };
-		18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F2621BD268980023DA82 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +103,7 @@
 		18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallMonitor.mm; sourceTree = "<group>"; };
 		18C0D1D41BD29E2800BC52E8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18C0D1D91BD2A74300BC52E8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		18C0D1DA1BD2A74300BC52E8 /* HomeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HomeViewController.mm; sourceTree = "<group>"; };
 		18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
 		18C0D1DD1BD2ABB600BC52E8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoginViewController.mm; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
 		18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		18D6F2621BD268980023DA82 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +121,6 @@
 				18C0D1F71BD2ECC400BC52E8 /* WatchKit.framework in Frameworks */,
 				18C0D1F51BD2EC7400BC52E8 /* WatchConnectivity.framework in Frameworks */,
 				18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */,
-				18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */,
 				18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,7 +173,7 @@
 				18C0D1D41BD29E2800BC52E8 /* LoginViewController.h */,
 				18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */,
 				18C0D1D91BD2A74300BC52E8 /* HomeViewController.h */,
-				18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */,
+				18C0D1DA1BD2A74300BC52E8 /* HomeViewController.mm */,
 				1812E99F1BD2150F0059B99C /* main.m */,
 				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
 				1812E9AF1BD2150F0059B99C /* Info.plist */,
@@ -225,7 +222,6 @@
 				18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */,
 				18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */,
 				18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */,
-				18D6F2621BD268980023DA82 /* AddressBook.framework */,
 				18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
@@ -375,7 +371,7 @@
 				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,
 				18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */,
 				1812E9A01BD2150F0059B99C /* main.m in Sources */,
-				18C0D1DB1BD2A74300BC52E8 /* HomeViewController.m in Sources */,
+				18C0D1DB1BD2A74300BC52E8 /* HomeViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,3 @@
-//
-//  HoudiniAPI.hpp
-//  Houdini
-//
-//  Created by Apple on 10/17/15.
-//  Copyright © 2015 lufinkey. All rights reserved.
-//
 
 #ifndef HoudiniAPI_hpp
 #define HoudiniAPI_hpp
@@ -18,9 +11,12 @@ class HoudiniAPI
 public:
 	
 	
-	static void login(const std::string& username, const std::string& password, std::function<void(BOOL success, NSError* error)> onfinish);
+	static void login(const std::string& username, const std::string& password, std::function<void(bool success, NSError* error)> onfinish);
 	
-	static void requestPhoneCall(const std::string& phone_number, std::function<void(BOOL success, NSError* error)> onfinish);
+	static void requestPhoneCall(const std::string& phone_number, std::function<void(bool success, NSError* error)> onfinish);
+	
+	static void setAvailable(bool available, std::function<void(NSError* error)> onfinish);
+	static void isAvailable(std::function<void(bool available, NSError* error)> onfinish);
 };
 
-#endif /* HoudiniAPI_hpp */
+#endif

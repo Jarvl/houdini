@@ -1,18 +1,11 @@
-//
-//  ViewController.m
-//  Houdini
-//
-//  Created by Apple on 10/16/15.
-//  Copyright © 2015 lufinkey. All rights reserved.
-//
 
 #import "MainViewController.h"
 #import "HomeViewController.h"
+#include "HoudiniAPI.h"
 
 @interface MainViewController()
 {
 	CallMonitor* _callMonitor;
-	BOOL firstTime;
 }
 @end
 
@@ -22,26 +15,18 @@
 {
 	if(self = [super initWithRootViewController:rootViewController])
 	{
-		firstTime = YES;
 		_callMonitor = [[CallMonitor alloc] init];
 		_callMonitor.delegate = self;
 		[self setNavigationBarHidden:YES];
-	}
-	return self;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-	if(firstTime)
-	{
+		
 		if([WCSession isSupported])
 		{
 			WCSession* session = [WCSession defaultSession];
 			[session setDelegate:self];
 			[session activateSession];
 		}
-		firstTime = NO;
 	}
+	return self;
 }
 
 -(CNMutableContact*)contactAddFirstName:(NSString*)firstName lastName:(NSString*)lastName number:(NSString*)number
@@ -117,7 +102,8 @@
 	NSString* action = [message objectForKey:@"action"];
 	if([action isEqualToString:@"requestcall"])
 	{
-		//TODO send request to call
+		NSLog(@"requesting phone call");
+		//TODO request phone call
 	}
 }
 

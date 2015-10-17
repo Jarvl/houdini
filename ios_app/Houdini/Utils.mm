@@ -1,10 +1,3 @@
-//
-//  Utils.cpp
-//  Houdini
-//
-//  Created by Apple on 10/17/15.
-//  Copyright © 2015 lufinkey. All rights reserved.
-//
 
 #include "Utils.h"
 
