@@ -11,5 +11,5 @@ var usersAvailableSchema = new Schema({
 // Set random plugin
 usersAvailableSchema.plugin(random);
 
-var UsersAvailable = mongoose.model('sessions', usersAvailableSchema);
+var UsersAvailable = mongoose.model('usersAvailable', usersAvailableSchema);
 module.exports = UsersAvailable;

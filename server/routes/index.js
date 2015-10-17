@@ -21,7 +21,7 @@ router.post('api/endPhoneCall', function(req, res) {
 
     // Find and remove the current session
     Sessions.findOne({
-        sessionId = sessionId
+        sessionId: sessionId
     })
     .remove()
     .exec(function(err) {
