@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
  * Just a placeholder
 **/
 router.get('/api', function(req, res) {
-    res.send(200);
+    res.sendStatus(200);
 });
 
 
@@ -117,7 +117,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
         helpers.logError(err);
         // Loop through each user
         for (var i = 0; i < usersData.length; i++) {
-            // Send them a push notification with the session id attached
+            // Send them a push notification with the session id and phone number attached
         }
         res.json(usersData);
     });
@@ -177,7 +177,7 @@ router.post('/signup', function(req, res) {
     var password = req.body.password;
     var phoneNumber = req.body.phoneNumber;
     var firstName = req.body.firstName;
-    var lastname = req.body.lastName;
+    var lastName = req.body.lastName;
 
     // Hash the password
     var hash = bcrypt.hashSync(password, secrets.passwordSeed);
