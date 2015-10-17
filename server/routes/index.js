@@ -251,15 +251,14 @@ router.get('/stripeConfirmation', function(req, res) {
     }
     else if (req.query.code) {
         var stripeCode = req.query.code;
-        //var stripeEmail = req.session.stripeEmail;
+        var sess = req.session;
 
         // Store user code
         Users.findOneAndUpdate({
-            stripeEmail: stripeEmail
+            username: sess.username
         }, {
             $set: {
-                stripeCode: stripeCode,
-                stripeEmail: stripeEmail
+                stripeCode: stripeCode
             }
         }, function(err) {
             helpers.logError(err);
