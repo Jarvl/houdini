@@ -19,6 +19,8 @@
 {
 	if(self = [super init])
 	{
+		[self.view setBackgroundColor:[UIColor whiteColor]];
+		
 		_availabilitySwitch = [[UISwitch alloc] init];
 		[_availabilitySwitch setCenter:CGPointMake(100, 100)];
 		[self.view addSubview:_availabilitySwitch];

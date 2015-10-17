@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 #import <WatchConnectivity/WatchConnectivity.h>
 
-@interface MainViewController : UIViewController<CallMonitorDelegate, LoginViewControllerDelegate, WCSessionDelegate>
+@interface MainViewController : UINavigationController<CallMonitorDelegate, LoginViewControllerDelegate, WCSessionDelegate>
 
 -(CNMutableContact*)contactAddFirstName:(NSString*)firstName lastName:(NSString*)lastName number:(NSString*)number;
 -(void)contactRemove:(CNMutableContact*)contact;

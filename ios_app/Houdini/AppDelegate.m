@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "LoginViewController.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate()
 @end
@@ -18,8 +20,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	MainViewController* viewController = [[MainViewController alloc] init];
-	[self.window setRootViewController:viewController];
+	LoginViewController* loginViewController = [[LoginViewController alloc] init];
+	MainViewController* mainViewController = [[MainViewController alloc] initWithRootViewController:loginViewController];
+	if(![mainViewController loginRequired])
+	{
+		HomeViewController* homeViewController = [[HomeViewController alloc] init];
+		[mainViewController pushViewController:homeViewController animated:NO];
+	}
+	[self.window setRootViewController:mainViewController];
 	[self.window makeKeyAndVisible];
     return YES;
 }

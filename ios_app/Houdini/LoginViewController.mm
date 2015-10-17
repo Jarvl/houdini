@@ -37,6 +37,7 @@
 		_passwordField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 100, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_passwordField setBorderStyle:UITextBorderStyleLine];
 		[_passwordField setPlaceholder:@"Password"];
+		[_passwordField setSecureTextEntry:YES];
 		
 		_loginButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width/2)-(LOGIN_WIDTH/2), 150, LOGIN_WIDTH, LOGIN_HEIGHT)];
 		[_loginButton setBackgroundColor:[UIColor grayColor]];

@@ -18,13 +18,14 @@
 
 @implementation MainViewController
 
--(id)init
+-(id)initWithRootViewController:(UIViewController*)rootViewController
 {
-	if(self = [super init])
+	if(self = [super initWithRootViewController:rootViewController])
 	{
 		firstTime = YES;
 		_callMonitor = [[CallMonitor alloc] init];
 		_callMonitor.delegate = self;
+		[self setNavigationBarHidden:YES];
 	}
 	return self;
 }
@@ -38,12 +39,6 @@
 			WCSession* session = [WCSession defaultSession];
 			[session setDelegate:self];
 			[session activateSession];
-		}
-		if([self loginRequired])
-		{
-			LoginViewController* loginViewController = [[LoginViewController alloc] init];
-			loginViewController.delegate = self;
-			[self presentViewController:loginViewController animated:NO completion:NULL];
 		}
 		firstTime = NO;
 	}
@@ -115,7 +110,7 @@
 {
 	[self dismissViewControllerAnimated:YES completion:^(){
 		HomeViewController* homeViewController = [[HomeViewController alloc] init];
-		[self presentViewController:homeViewController animated:YES completion:NULL];
+		[self pushViewController:homeViewController animated:YES];
 	}];
 }
 
@@ -124,7 +119,7 @@
 	NSString* action = [message objectForKey:@"action"];
 	if([action isEqualToString:@"requestcall"])
 	{
-		
+		//TODO send request to call
 	}
 }
 
