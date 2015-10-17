@@ -87,7 +87,7 @@
 -(BOOL)loginRequired
 {
 	//TODO check if logging in is necessary
-	return YES;
+	return NO;
 }
 
 
