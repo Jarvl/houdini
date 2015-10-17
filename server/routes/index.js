@@ -29,46 +29,6 @@ router.get('/api', function(req, res) {
 
 
 /**
- * POST /api/endPhoneCall
- * Sent by the requesting user's phone.
- * Triggered by the ending of the phone call.
- * Finds the current call based on the session id.
- * Calculates minutes (rounds up), and charges the requesting user's Stripe account.
- * @response A confirmation that the account was charged and the minutes of the call.
-**/
-router.post('/api/endPhoneCall', function(req, res) {
-    var stripeCode, totalMinutes;
-    var sess = req.session;
-    //var sessionId = sess.sessionId;
-    var username = sess.username;
-    var sessionId = req.body.sessionId;
-
-    var date = new Date();
-    var timeEnd = date.getTime();
-
-    // Find and remove the current calling session
-    var wfcQuery = WaitingForCall.findOne({
-        sessionId: sessionId
-    }).remove().exec();
-
-    // Get the user so we can find the time
-    var userQuery = Users.findOne({
-        username: username
-    }).exec();
-
-    userQuery.then(function(user) {
-        stripeCode = user.stripeCode;
-
-        // Get the difference, round up to nearest minute
-        //totalMinutes = Math.ceil((timeEnd - timeStart) / 60);
-
-        // Charge their account down here
-
-    });
-});
-
-
-/**
  * POST /api/requestPhoneCall
  * Sent by the requesting user's phone.
  * Triggered by the request of the phone call from the watch.
@@ -151,6 +111,57 @@ router.post('/api/called', function(req, res) {
     },
     {}, function(err) {
         helpers.logError(err);
+        res.sendStatus(200);
+    });
+
+});
+
+
+/**
+ * POST /api/endPhoneCall
+ * Sent by the requesting user's phone.
+ * Triggered by the ending of the phone call.
+ * Finds the current call based on the session id.
+ * Minutes and session id are sent from usernameResponding.
+ * usernameRequesting then pays usernameResponding for his/her time.
+ * @response A confirmation that the account was charged.
+**/
+router.post('/api/endPhoneCall', function(req, res) {
+    var time = req.body.time;
+    var sess = req.session;
+    var sessionId = req.body.sessionId;
+    var usernameResponding = sess.username;
+    var usernameRequesting = "";
+
+    var resUserStripeCode = "";
+    var reqUserStripeCode = "";
+
+    // Find and remove the current calling session
+    var wfcQuery = WaitingForCall.findOne({
+        sessionId: sessionId
+    }, function(wfc) {
+        // But first, lemme save this data
+        usernameRequesting = wfc.usernameRequesting;
+        wfc.remove();
+    });
+
+    // Get responding user's data
+    Users.findOne({
+        username: usernameResponding
+    }, function(user) {
+        resUserStripeCode = user.stripeCode;
+    });
+
+    // Get requesting user's data
+    var reqUserQuery = Users.findOne({
+        username: usernameRequesting
+    });
+
+    reqUserQuery.then(function(user) {
+        reqUserStripeCode = user.stripeCode;
+
+        // Charge req user's stripe account here
+
         res.sendStatus(200);
     });
 
