@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+var helpers = require('../utils/helpers');
 var secrets = require('../config/secrets');
 
 var stripe = require('stripe')(secrets.stripeApiKey);
@@ -22,38 +23,46 @@ router.get('/api', function(req, res) {
 // Sent by the phone who requested the phone call to end a call
 router.post('/api/endPhoneCall', function(req, res) {
     var sessionId = req.body.sessionId;
+    var username, stripeEmail, stripeCode;
 
     // Find and remove the current session
-    WaitingForCall.findOne({
+    var wfcQuery = WaitingForCall.findOne({
         sessionId: sessionId
-    })
-    .remove()
-    .exec(function(err) {
-        if (err) console.log(err);
-        res.send("removed");
+    }).exec();
+
+    wfcQuery.then(function(err, wfc) {
+        helpers.logError(err)
+        username = wfc.username;
+        stripeCode = wfc.stripeCode;
+        stripeEmail = wfc.stripeEmail;
+        wfc.remove().exec(helpers.logError(err));
     });
+
+    // Charge their account down here
+
 });
 
 // Sent by the phone that's requesting the phone call
 router.post('/api/requestPhoneCall', function(req, res) {
+    // Session id from requesting phone
     var sessionId = req.body.sessionId;
     var username = req.body.username;
 
     // Store the session information
     WaitingForCall.create({
         sessionId: sessionId,
-        username: username
-    }, function(err) {
-        if (err) console.log(err);
-    });
+        phoneNumber: phoneNumber,
+        username: username,
+    }, helpers.logError(err));
 
     // use setInterval here to find other people. Implement last
 
-    // Find 10 clients in the available users collection and send then push notifications
+    // Find 10 available users and send then push notifications
     Users.findRandom({available: true}, {}, {limit: 10}, function(err, usersData) {
+        helpers.logError(err);
         // Loop through each user
         for (var i = 0; i < usersData.length; i++) {
-            // Send them a notification somehow
+            // Send them a push notification
         }
         res.json(usersData);
     });
@@ -71,10 +80,7 @@ router.post('/api/called', function(req, res) {
             called: true
         }
     },
-    {},
-    function(err) {
-        if (err) console.log(err);
-    });
+    {}, helpers.logError(err));
 });
 
 // When a user is made available to call
@@ -90,10 +96,7 @@ router.post('/api/setAvailable', function(req, res) {
             available: true
         }
     },
-    {},
-    function(err) {
-        if (err) console.log(err);
-    });
+    {}, helpers.logError(err));
 });
 
 // When a user is made unavailable to call
@@ -108,9 +111,7 @@ router.post('/api/setUnavailable', function(req, res) {
         $set: {
             available: false
         }
-    }, function(err) {
-        if (err) console.log(err);
-    });
+    }, helpers.logError(err));
 });
 
 // sign up form handling
@@ -122,7 +123,7 @@ router.post('/signup', function(req, res) {
         firstName: firstName,
         lastName: lastName
     }, function(err) {
-        if (err) console.log(err);
+        helpers.logError(err);
         res.send('registered!');
     });
 });
@@ -143,7 +144,7 @@ router.get('/stripeConfirmation', function(req, res) {
     }
     else if (req.query.code) {
         var stripeCode = req.query.code;
-        var stripeEmail = req.session.stripeEmail;
+        //var stripeEmail = req.session.stripeEmail;
 
         // Store user code
         Users.findOneAndUpdate({
@@ -154,7 +155,7 @@ router.get('/stripeConfirmation', function(req, res) {
                 stripeEmail: stripeEmail
             }
         }, function(err) {
-            if (err) console.log(err);
+            helpers.logError(err);
             res.send('Account connected!');
         });
     }

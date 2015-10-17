@@ -5,6 +5,7 @@ var random = require('mongoose-simple-random');
 var waitingForCallSchema = new Schema({
     sessionId: String,
     phoneNumber: String,
+    username: String,
     called: {
         type: Boolean,
         default: false
