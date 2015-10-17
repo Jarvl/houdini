@@ -41,7 +41,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
     // Send bad request status if there is no phone number
     if (!phoneNumber) {
-        res.sendStatus(400);
+        res.send("false");
     }
 
     var sess = req.session;
@@ -71,7 +71,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
             for (var i = 0; i < usersData.length; i++) {
                 // Send them a push notification with the session id and phone number attached
             }
-            res.json(usersData);
+            res.send("true");
         });
     });
 });
@@ -221,7 +221,7 @@ router.post('/signup', function(req, res) {
         helpers.logError(err);
         // Set the session - this will autolog them in
         sess.username = username;
-        res.send('true');
+        res.send("true");
     });
 });
 
@@ -247,6 +247,42 @@ router.post('/login', function(req, res) {
         else {
             res.send("false");
         }
+    });
+});
+
+
+// Sets the availability of a user
+router.post('/api/setAvailable', function(req, res) {
+    // Session Id from receiving phone
+    var username = req.session.username;
+    // true or false
+    var setOrUnset = req.body.available;
+
+    // Find and set available
+    Users.findOneAndUpdate({
+        username: username
+    }, {
+        $set: {
+            available: setOrUnset
+        }
+    },
+    {}, function(err) {
+        helpers.logError(err);
+    });
+});
+
+// Checks the availability of a user
+router.post('/api/isAvailable', function(req, res) {
+    // Session Id from receiving phone
+    var username = req.session.username;
+
+    // Find and set unavailable
+    Users.findOne({
+        username: username
+    }, function(err, user) {
+        helpers.logError(err);
+        if (user.available) res.send("true");
+        else res.send("false");
     });
 });
 
