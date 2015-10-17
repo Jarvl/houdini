@@ -1,0 +1,603 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1812E9A01BD2150F0059B99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E99F1BD2150F0059B99C /* main.m */; };
+		1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A21BD2150F0059B99C /* AppDelegate.m */; };
+		1812E9A61BD2150F0059B99C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* ViewController.m */; };
+		1812E9A91BD2150F0059B99C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9A71BD2150F0059B99C /* Main.storyboard */; };
+		1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AA1BD2150F0059B99C /* Assets.xcassets */; };
+		1812E9AE1BD2150F0059B99C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */; };
+		1812E9B31BD2150F0059B99C /* Houdini WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */; };
+		1812E9B91BD2150F0059B99C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9B71BD2150F0059B99C /* Interface.storyboard */; };
+		1812E9BB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9BA1BD2150F0059B99C /* Assets.xcassets */; };
+		1812E9C21BD2150F0059B99C /* Houdini WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1812E9CA1BD215100059B99C /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9C91BD215100059B99C /* InterfaceController.m */; };
+		1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CC1BD215100059B99C /* ExtensionDelegate.m */; };
+		1812E9D01BD215100059B99C /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CF1BD215100059B99C /* NotificationController.m */; };
+		1812E9D21BD215100059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9D11BD215100059B99C /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1812E9B41BD2150F0059B99C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1812E9931BD2150F0059B99C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1812E9B11BD2150F0059B99C;
+			remoteInfo = "Houdini WatchKit App";
+		};
+		1812E9C31BD2150F0059B99C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1812E9931BD2150F0059B99C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1812E9C01BD2150F0059B99C;
+			remoteInfo = "Houdini WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1812E9D91BD215100059B99C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1812E9C21BD2150F0059B99C /* Houdini WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1812E9DD1BD215100059B99C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				1812E9B31BD2150F0059B99C /* Houdini WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1812E99B1BD2150F0059B99C /* Houdini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Houdini.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1812E99F1BD2150F0059B99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1812E9A11BD2150F0059B99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1812E9A21BD2150F0059B99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1812E9A41BD2150F0059B99C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1812E9A51BD2150F0059B99C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1812E9A81BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1812E9AA1BD2150F0059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1812E9AD1BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1812E9AF1BD2150F0059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Houdini WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1812E9B81BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		1812E9BA1BD2150F0059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1812E9BC1BD2150F0059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Houdini WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1812E9C71BD215100059B99C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		1812E9C81BD215100059B99C /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		1812E9C91BD215100059B99C /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		1812E9CB1BD215100059B99C /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		1812E9CC1BD215100059B99C /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		1812E9CE1BD215100059B99C /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		1812E9CF1BD215100059B99C /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		1812E9D11BD215100059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1812E9D31BD215100059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1812E9981BD2150F0059B99C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1812E9BE1BD2150F0059B99C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1812E9921BD2150F0059B99C = {
+			isa = PBXGroup;
+			children = (
+				1812E99D1BD2150F0059B99C /* Houdini */,
+				1812E9B61BD2150F0059B99C /* Houdini WatchKit App */,
+				1812E9C51BD2150F0059B99C /* Houdini WatchKit Extension */,
+				1812E99C1BD2150F0059B99C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1812E99C1BD2150F0059B99C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1812E99B1BD2150F0059B99C /* Houdini.app */,
+				1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */,
+				1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1812E99D1BD2150F0059B99C /* Houdini */ = {
+			isa = PBXGroup;
+			children = (
+				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
+				1812E9A21BD2150F0059B99C /* AppDelegate.m */,
+				1812E9A41BD2150F0059B99C /* ViewController.h */,
+				1812E9A51BD2150F0059B99C /* ViewController.m */,
+				1812E9A71BD2150F0059B99C /* Main.storyboard */,
+				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
+				1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */,
+				1812E9AF1BD2150F0059B99C /* Info.plist */,
+				1812E99E1BD2150F0059B99C /* Supporting Files */,
+			);
+			path = Houdini;
+			sourceTree = "<group>";
+		};
+		1812E99E1BD2150F0059B99C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1812E99F1BD2150F0059B99C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1812E9B61BD2150F0059B99C /* Houdini WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				1812E9B71BD2150F0059B99C /* Interface.storyboard */,
+				1812E9BA1BD2150F0059B99C /* Assets.xcassets */,
+				1812E9BC1BD2150F0059B99C /* Info.plist */,
+			);
+			path = "Houdini WatchKit App";
+			sourceTree = "<group>";
+		};
+		1812E9C51BD2150F0059B99C /* Houdini WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1812E9C81BD215100059B99C /* InterfaceController.h */,
+				1812E9C91BD215100059B99C /* InterfaceController.m */,
+				1812E9CB1BD215100059B99C /* ExtensionDelegate.h */,
+				1812E9CC1BD215100059B99C /* ExtensionDelegate.m */,
+				1812E9CE1BD215100059B99C /* NotificationController.h */,
+				1812E9CF1BD215100059B99C /* NotificationController.m */,
+				1812E9D11BD215100059B99C /* Assets.xcassets */,
+				1812E9D31BD215100059B99C /* Info.plist */,
+				1812E9C61BD215100059B99C /* Supporting Files */,
+			);
+			path = "Houdini WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		1812E9C61BD215100059B99C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1812E9C71BD215100059B99C /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1812E99A1BD2150F0059B99C /* Houdini */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1812E9DE1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini" */;
+			buildPhases = (
+				1812E9971BD2150F0059B99C /* Sources */,
+				1812E9981BD2150F0059B99C /* Frameworks */,
+				1812E9991BD2150F0059B99C /* Resources */,
+				1812E9DD1BD215100059B99C /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1812E9B51BD2150F0059B99C /* PBXTargetDependency */,
+			);
+			name = Houdini;
+			productName = Houdini;
+			productReference = 1812E99B1BD2150F0059B99C /* Houdini.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1812E9B11BD2150F0059B99C /* Houdini WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1812E9DA1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini WatchKit App" */;
+			buildPhases = (
+				1812E9B01BD2150F0059B99C /* Resources */,
+				1812E9D91BD215100059B99C /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1812E9C41BD2150F0059B99C /* PBXTargetDependency */,
+			);
+			name = "Houdini WatchKit App";
+			productName = "Houdini WatchKit App";
+			productReference = 1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		1812E9C01BD2150F0059B99C /* Houdini WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1812E9D61BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini WatchKit Extension" */;
+			buildPhases = (
+				1812E9BD1BD2150F0059B99C /* Sources */,
+				1812E9BE1BD2150F0059B99C /* Frameworks */,
+				1812E9BF1BD2150F0059B99C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Houdini WatchKit Extension";
+			productName = "Houdini WatchKit Extension";
+			productReference = 1812E9C11BD2150F0059B99C /* Houdini WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1812E9931BD2150F0059B99C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = lufinkey;
+				TargetAttributes = {
+					1812E99A1BD2150F0059B99C = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = RL98QGQJCL;
+					};
+					1812E9B11BD2150F0059B99C = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = RL98QGQJCL;
+					};
+					1812E9C01BD2150F0059B99C = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = RL98QGQJCL;
+					};
+				};
+			};
+			buildConfigurationList = 1812E9961BD2150F0059B99C /* Build configuration list for PBXProject "Houdini" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1812E9921BD2150F0059B99C;
+			productRefGroup = 1812E99C1BD2150F0059B99C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1812E99A1BD2150F0059B99C /* Houdini */,
+				1812E9B11BD2150F0059B99C /* Houdini WatchKit App */,
+				1812E9C01BD2150F0059B99C /* Houdini WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1812E9991BD2150F0059B99C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812E9AE1BD2150F0059B99C /* LaunchScreen.storyboard in Resources */,
+				1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */,
+				1812E9A91BD2150F0059B99C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1812E9B01BD2150F0059B99C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812E9BB1BD2150F0059B99C /* Assets.xcassets in Resources */,
+				1812E9B91BD2150F0059B99C /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1812E9BF1BD2150F0059B99C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812E9D21BD215100059B99C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1812E9971BD2150F0059B99C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812E9A61BD2150F0059B99C /* ViewController.m in Sources */,
+				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,
+				1812E9A01BD2150F0059B99C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1812E9BD1BD2150F0059B99C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */,
+				1812E9CA1BD215100059B99C /* InterfaceController.m in Sources */,
+				1812E9D01BD215100059B99C /* NotificationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1812E9B51BD2150F0059B99C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1812E9B11BD2150F0059B99C /* Houdini WatchKit App */;
+			targetProxy = 1812E9B41BD2150F0059B99C /* PBXContainerItemProxy */;
+		};
+		1812E9C41BD2150F0059B99C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1812E9C01BD2150F0059B99C /* Houdini WatchKit Extension */;
+			targetProxy = 1812E9C31BD2150F0059B99C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1812E9A71BD2150F0059B99C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1812E9A81BD2150F0059B99C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1812E9AD1BD2150F0059B99C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1812E9B71BD2150F0059B99C /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1812E9B81BD2150F0059B99C /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1812E9D41BD215100059B99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1812E9D51BD215100059B99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1812E9D71BD215100059B99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		1812E9D81BD215100059B99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		1812E9DB1BD215100059B99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				IBSC_MODULE = Houdini_WatchKit_Extension;
+				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		1812E9DC1BD215100059B99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				IBSC_MODULE = Houdini_WatchKit_Extension;
+				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		1812E9DF1BD215100059B99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Houdini/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		1812E9E01BD215100059B99C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Houdini/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1812E9961BD2150F0059B99C /* Build configuration list for PBXProject "Houdini" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1812E9D41BD215100059B99C /* Debug */,
+				1812E9D51BD215100059B99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1812E9D61BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1812E9D71BD215100059B99C /* Debug */,
+				1812E9D81BD215100059B99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1812E9DA1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1812E9DB1BD215100059B99C /* Debug */,
+				1812E9DC1BD215100059B99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1812E9DE1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1812E9DF1BD215100059B99C /* Debug */,
+				1812E9E01BD215100059B99C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1812E9931BD2150F0059B99C /* Project object */;
+}
