@@ -152,7 +152,7 @@ router.post('/api/endPhoneCall', function(req, res) {
             username: usernameResponding
         });
 
-        resUserQuery.then(function(err, user) {
+        resUserQuery.then(function(user) {
             resUserStripeCode = user.stripeCode;
         });
 
