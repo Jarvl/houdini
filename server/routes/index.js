@@ -144,7 +144,7 @@ router.post('/api/endPhoneCall', function(req, res) {
 
     // Send bad request if time or sessionId doesn't exist
     if (!time || !sessionId) {
-        res.sendStatus(400);
+        res.send("false");
     }
 
     // Find and remove the current calling session
@@ -174,12 +174,7 @@ router.post('/api/endPhoneCall', function(req, res) {
         reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
             // Charge req user's stripe account here
-            res.json({
-                usernameResponding: usernameResponding,
-                usernameRequesting: usernameRequesting,
-                resUserStripeCode: resUserStripeCode,
-                reqUserStripeCode: reqUserStripeCode
-            });
+            res.send("true");
         });
     });
 });
@@ -268,11 +263,12 @@ router.post('/api/setAvailable', function(req, res) {
     },
     {}, function(err) {
         helpers.logError(err);
+        res.send("true");
     });
 });
 
 // Checks the availability of a user
-router.post('/api/isAvailable', function(req, res) {
+router.get('/api/isAvailable', function(req, res) {
     // Session Id from receiving phone
     var username = req.session.username;
 
