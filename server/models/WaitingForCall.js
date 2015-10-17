@@ -9,7 +9,8 @@ var waitingForCallSchema = new Schema({
     called: {
         type: Boolean,
         default: false
-    }
+    },
+    timeStart: Number // javascript time() function
 }, { collections: 'waitingForCall' });
 
 // Set random plugin

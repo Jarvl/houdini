@@ -4,10 +4,11 @@ var random = require('mongoose-simple-random');
 
 var usersSchema = new Schema({
     username: String,
-    sessionId: {
+    password: String,
+    /*sessionId: {
         type: String,
         default: ''
-    },
+    },*/
     phoneNumber: String,
     firstName: String,
     lastName: String,
