@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1812E9A01BD2150F0059B99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E99F1BD2150F0059B99C /* main.m */; };
 		1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A21BD2150F0059B99C /* AppDelegate.m */; };
-		1812E9A61BD2150F0059B99C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* ViewController.m */; };
+		1812E9A61BD2150F0059B99C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* ViewController.mm */; };
 		1812E9A91BD2150F0059B99C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9A71BD2150F0059B99C /* Main.storyboard */; };
 		1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AA1BD2150F0059B99C /* Assets.xcassets */; };
 		1812E9AE1BD2150F0059B99C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */; };
@@ -21,6 +21,10 @@
 		1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CC1BD215100059B99C /* ExtensionDelegate.m */; };
 		1812E9D01BD215100059B99C /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CF1BD215100059B99C /* NotificationController.m */; };
 		1812E9D21BD215100059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9D11BD215100059B99C /* Assets.xcassets */; };
+		18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */; };
+		18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */; settings = {ASSET_TAGS = (); }; };
+		18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */; };
+		18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F2621BD268980023DA82 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +75,7 @@
 		1812E9A11BD2150F0059B99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1812E9A21BD2150F0059B99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1812E9A41BD2150F0059B99C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1812E9A51BD2150F0059B99C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1812E9A51BD2150F0059B99C /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		1812E9A81BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1812E9AA1BD2150F0059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1812E9AD1BD2150F0059B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +94,11 @@
 		1812E9CF1BD215100059B99C /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		1812E9D11BD215100059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1812E9D31BD215100059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallMonitor.h; sourceTree = "<group>"; };
+		18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallMonitor.mm; sourceTree = "<group>"; };
+		18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		18D6F2621BD268980023DA82 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */,
+				18D6F2631BD268980023DA82 /* AddressBook.framework in Frameworks */,
+				18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +129,7 @@
 				1812E9B61BD2150F0059B99C /* Houdini WatchKit App */,
 				1812E9C51BD2150F0059B99C /* Houdini WatchKit Extension */,
 				1812E99C1BD2150F0059B99C /* Products */,
+				18D6F2611BD2559B0023DA82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,10 +146,12 @@
 		1812E99D1BD2150F0059B99C /* Houdini */ = {
 			isa = PBXGroup;
 			children = (
+				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
+				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
 				1812E9A21BD2150F0059B99C /* AppDelegate.m */,
 				1812E9A41BD2150F0059B99C /* ViewController.h */,
-				1812E9A51BD2150F0059B99C /* ViewController.m */,
+				1812E9A51BD2150F0059B99C /* ViewController.mm */,
 				1812E9A71BD2150F0059B99C /* Main.storyboard */,
 				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
 				1812E9AC1BD2150F0059B99C /* LaunchScreen.storyboard */,
@@ -186,6 +201,16 @@
 				1812E9C71BD215100059B99C /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18D6F2611BD2559B0023DA82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */,
+				18D6F2621BD268980023DA82 /* AddressBook.framework */,
+				18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +281,11 @@
 					1812E99A1BD2150F0059B99C = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = RL98QGQJCL;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					1812E9B11BD2150F0059B99C = {
 						CreatedOnToolsVersion = 7.0;
@@ -322,7 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1812E9A61BD2150F0059B99C /* ViewController.m in Sources */,
+				18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */,
+				1812E9A61BD2150F0059B99C /* ViewController.mm in Sources */,
 				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,
 				1812E9A01BD2150F0059B99C /* main.m in Sources */,
 			);
@@ -580,6 +611,7 @@
 				1812E9D81BD215100059B99C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1812E9DA1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -588,6 +620,7 @@
 				1812E9DC1BD215100059B99C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1812E9DE1BD215100059B99C /* Build configuration list for PBXNativeTarget "Houdini" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +629,7 @@
 				1812E9E01BD215100059B99C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
