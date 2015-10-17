@@ -136,7 +136,7 @@ router.post('/connectStripe', function(req, res) {
     res.redirect('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + secrets.stripeClientKey + '&scope=read_write');
 });
 
-router.get('stripeConfirmation', function(req, res) {
+router.get('/stripeConfirmation', function(req, res) {
     var error = req.query.error;
     var errorDescription = req.query.error_description;
 
