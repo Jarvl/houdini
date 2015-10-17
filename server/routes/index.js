@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var helpers = require('../utils/helpers');
 var secrets = require('../config/secrets');
-var WaitingForCall = require('../models/WaitingForCall');
+var WaitingForCalls = require('../models/WaitingForCalls');
 var Users = require('../models/Users');
 
 var stripe = require('stripe')(secrets.stripeApiKey);
@@ -49,7 +49,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
     var username = sess.username;
 
     // Store the call information
-    var wfcQuery = WaitingForCall.create({
+    var wfcQuery = WaitingForCalls.create({
         sessionId: sessionId,
         phoneNumber: phoneNumber,
         usernameRequesting: username
@@ -89,7 +89,7 @@ router.post('/api/called', function(req, res) {
 
     // Update database - the user has been called
     // Called time is in seconds
-    WaitingForCall.findOneAndUpdate({
+    WaitingForCalls.findOneAndUpdate({
         sessionId: sessionId
     }, {
         $set: {
@@ -137,9 +137,9 @@ router.post('/api/endPhoneCall', function(req, res) {
     var reqUserStripeCode = "";
 
     // Find and remove the current calling session
-    var wfcQuery = WaitingForCall.findOne({
+    var wfcQuery = WaitingForCalls.findOne({
         sessionId: sessionId
-    }, function(wfc) {
+    }, function(err, wfc) {
         // But first, lemme save this data
         usernameRequesting = wfc.usernameRequesting;
         wfc.remove();
@@ -148,7 +148,7 @@ router.post('/api/endPhoneCall', function(req, res) {
     // Get responding user's data
     Users.findOne({
         username: usernameResponding
-    }, function(user) {
+    }, function(err, user) {
         resUserStripeCode = user.stripeCode;
     });
 
@@ -157,7 +157,7 @@ router.post('/api/endPhoneCall', function(req, res) {
         username: usernameRequesting
     });
 
-    reqUserQuery.then(function(user) {
+    reqUserQuery.then(function(err, user) {
         reqUserStripeCode = user.stripeCode;
 
         // Charge req user's stripe account here
