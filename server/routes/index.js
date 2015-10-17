@@ -50,9 +50,7 @@ router.post('/api/endPhoneCall', function(req, res) {
         sessionId: sessionId
     }).exec();
 
-    wfcQuery.then(function(err, wfc) {
-        helpers.logError(err);
-
+    wfcQuery.then(function(wfc) {
         // Get the starting time
         timeStart = wfc.timeStart;
         wfc.remove().exec();
@@ -63,9 +61,7 @@ router.post('/api/endPhoneCall', function(req, res) {
         username: username
     }).exec();
 
-    userQuery.then(function(err, user) {
-        helpers.logError(err);
-
+    userQuery.then(function(user) {
         stripeCode = user.stripeCode;
         stripeEmail = user.stripeEmail;
 
@@ -179,11 +175,8 @@ router.post('/signup', function(req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
 
-    Users.findOne({username: username}).exec(function(err, user){
-        helpers.logError(err);
-        if (user) {
-            res.send("You're already signed up bruh.");
-        }
+    Users.findOne({username: username}).exec(function(user) {
+        if (user) res.send("You're already signed up bruh.");
     });
 
     // Hash the password
@@ -215,12 +208,9 @@ router.post('/login', function(req, res) {
     var password = req.body.password;
 
     // Check login info
-    var query = Users.findOne({username: username}).exec();
+    var userQuery = Users.findOne({username: username}).exec();
 
-    query.then(function(err, user) {
-        helpers.logError(err);
-        console.log(user);
-
+    userQuery.then(function(user) {
         var hash = bcrypt.hashSync(password, secrets.passwordSeed);
         // Set session if passwords match
         if (hash == user.password) {
@@ -228,8 +218,6 @@ router.post('/login', function(req, res) {
             res.send("Logged in!");
         }
     });
-
-    // set the username session variable
 });
 
 
