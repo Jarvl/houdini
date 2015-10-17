@@ -90,13 +90,12 @@ router.post('/api/requestPhoneCall', function(req, res) {
     var username = sess.username;
 
     // Store the call information
-    var wfcQuery = WaitingForCall.create({
+    WaitingForCall.create({
         sessionId: sessionId,
         phoneNumber: phoneNumber,
         usernameRequesting: username
-    });
-
-    wfcQuery.then(function(err) {
+    })
+    .exec(function(err) {
         helpers.logError(err);
         // use setInterval here to find other people. Implement last
         // Find 10 available users and send then push notifications
