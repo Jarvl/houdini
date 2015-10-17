@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # api keys and such
-#server/config/secrets.js
+server/config/secrets.js
