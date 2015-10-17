@@ -131,6 +131,7 @@ router.post('/api/endPhoneCall', function(req, res) {
     var sess = req.session;
     var sessionId = req.body.sessionId;
     var usernameResponding = sess.username;
+    console.log(usernameResponding);
     var usernameRequesting = "";
 
     var resUserStripeCode = "";
@@ -139,32 +140,34 @@ router.post('/api/endPhoneCall', function(req, res) {
     // Find and remove the current calling session
     var wfcQuery = WaitingForCalls.findOne({
         sessionId: sessionId
-    }, function(err, wfc) {
+    });
+
+    wfcQuery.then(function(err, wfc) {
         // But first, lemme save this data
         usernameRequesting = wfc.usernameRequesting;
         wfc.remove();
+
+        // Get responding user's data
+        Users.findOne({
+            username: usernameResponding
+        }, function(err, user) {
+            resUserStripeCode = user.stripeCode;
+        });
+
+        // Get requesting user's data
+        var reqUserQuery = Users.findOne({
+            username: usernameRequesting
+        });
+
+        reqUserQuery.then(function(err, user) {
+            reqUserStripeCode = user.stripeCode;
+            console.log(resUserStripeCode);
+            console.log(reqUserStripeCode);
+
+            // Charge req user's stripe account here
+            res.sendStatus(200);
+        });
     });
-
-    // Get responding user's data
-    Users.findOne({
-        username: usernameResponding
-    }, function(err, user) {
-        resUserStripeCode = user.stripeCode;
-    });
-
-    // Get requesting user's data
-    var reqUserQuery = Users.findOne({
-        username: usernameRequesting
-    });
-
-    reqUserQuery.then(function(err, user) {
-        reqUserStripeCode = user.stripeCode;
-
-        // Charge req user's stripe account here
-
-        res.sendStatus(200);
-    });
-
 });
 
 
