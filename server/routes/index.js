@@ -16,7 +16,7 @@ router.get('/api', function(req, res) {
 });
 
 // Sent by the phone who requested the phone call to end a call
-router.post('api/endPhoneCall', function(req, res) {
+router.post('/api/endPhoneCall', function(req, res) {
     var sessionId = req.body.sessionId;
 
     // Find and remove the current session
