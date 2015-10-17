@@ -142,15 +142,17 @@ router.post('/api/endPhoneCall', function(req, res) {
         sessionId: sessionId
     });
 
-    wfcQuery.then(function(err, wfc) {
+    wfcQuery.then(function(wfc) {
         // But first, lemme save this data
         usernameRequesting = wfc.usernameRequesting;
         wfc.remove();
 
         // Get responding user's data
-        Users.findOne({
+        var resUserQuery = Users.findOne({
             username: usernameResponding
-        }, function(err, user) {
+        });
+
+        resUserQuery.then(function(err, user) {
             resUserStripeCode = user.stripeCode;
         });
 
@@ -159,7 +161,7 @@ router.post('/api/endPhoneCall', function(req, res) {
             username: usernameRequesting
         });
 
-        reqUserQuery.then(function(err, user) {
+        reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
             console.log(resUserStripeCode);
             console.log(reqUserStripeCode);
@@ -202,7 +204,7 @@ router.post('/signup', function(req, res) {
         helpers.logError(err);
         // Set the session - this will autolog them in
         sess.username = username;
-        res.send('registered!');
+        res.send('true');
     });
 });
 
