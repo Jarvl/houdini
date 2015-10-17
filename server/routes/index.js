@@ -217,6 +217,7 @@ router.post('/login', function(req, res) {
         // Set session if passwords match
         if (hash == user.password) {
             req.session.username = username;
+            res.send("Logged in!");
         }
     });
 
