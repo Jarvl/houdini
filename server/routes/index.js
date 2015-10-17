@@ -46,10 +46,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
     // use setInterval here to find other people. Implement last
 
     // Find 10 clients in the available users collection and send then push notifications
-    UsersAvailable
-    .findRandom({})
-    .limit(10)
-    .exec(function(err, usersData) {
+    UsersAvailable.findRandom({}, {}, {limit: 10}, function(err, usersData) {
         // Loop through each user
         for (var i = 0; i < usersData.length; i++) {
             // Send them a notification somehow
