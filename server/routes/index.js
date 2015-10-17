@@ -131,7 +131,6 @@ router.post('/api/endPhoneCall', function(req, res) {
     var sess = req.session;
     var sessionId = req.body.sessionId;
     var usernameResponding = sess.username;
-    console.log(usernameResponding);
     var usernameRequesting = "";
 
     var resUserStripeCode = "";
@@ -163,11 +162,13 @@ router.post('/api/endPhoneCall', function(req, res) {
 
         reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
-            console.log(resUserStripeCode);
-            console.log(reqUserStripeCode);
-
             // Charge req user's stripe account here
-            res.sendStatus(200);
+            res.json({
+                usernameResponding: usernameResponding,
+                usernameRequesting: usernameRequesting,
+                resUserStripeCode: resUserStripeCode,
+                reqUserStripeCode: reqUserStripeCode
+            });
         });
     });
 });
