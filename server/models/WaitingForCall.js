@@ -5,12 +5,16 @@ var random = require('mongoose-simple-random');
 var waitingForCallSchema = new Schema({
     sessionId: String,
     phoneNumber: String,
-    username: String,
+    usernameRequesting: String,
+    // usernameResponding is populated after the user accepts a call request
+    usernameResponding: {
+        type: String,
+        default: ''
+    },
     called: {
         type: Boolean,
         default: false
-    },
-    timeStart: Number // javascript time() function
+    }
 }, { collections: 'waitingForCall' });
 
 // Set random plugin

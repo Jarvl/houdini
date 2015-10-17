@@ -37,7 +37,7 @@ router.get('/api', function(req, res) {
  * @response A confirmation that the account was charged and the minutes of the call.
 **/
 router.post('/api/endPhoneCall', function(req, res) {
-    var stripeEmail, stripeCode, timeStart, totalMinutes;
+    var stripeCode, totalMinutes;
     var sess = req.session;
     var sessionId = sess.sessionId;
     var username = sess.username;
@@ -48,13 +48,7 @@ router.post('/api/endPhoneCall', function(req, res) {
     // Find and remove the current calling session
     var wfcQuery = WaitingForCall.findOne({
         sessionId: sessionId
-    }).exec();
-
-    wfcQuery.then(function(wfc) {
-        // Get the starting time
-        timeStart = wfc.timeStart;
-        wfc.remove().exec();
-    });
+    }).remove().exec();
 
     // Get the user so we can find the time
     var userQuery = Users.findOne({
@@ -63,10 +57,9 @@ router.post('/api/endPhoneCall', function(req, res) {
 
     userQuery.then(function(user) {
         stripeCode = user.stripeCode;
-        stripeEmail = user.stripeEmail;
 
         // Get the difference, round up to nearest minute
-        totalMinutes = Math.ceil((timeEnd - timeStart) / 60);
+        //totalMinutes = Math.ceil((timeEnd - timeStart) / 60);
 
         // Charge their account down here
 
@@ -99,7 +92,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
     var wfcQuery = WaitingForCall.create({
         sessionId: sessionId,
         phoneNumber: phoneNumber,
-        username: username
+        usernameRequesting: username
     }).exec();
 
     wfcQuery.then(function(err) {
@@ -145,8 +138,8 @@ router.post('/api/called', function(req, res) {
         sessionId: sessionId
     }, {
         $set: {
-            called: true,
-            timeStart: time
+            usernameResponding: username,
+            called: true
         }
     },
     {}, helpers.logError(err));
