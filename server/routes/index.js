@@ -39,8 +39,9 @@ router.get('/api', function(req, res) {
 router.post('/api/endPhoneCall', function(req, res) {
     var stripeCode, totalMinutes;
     var sess = req.session;
-    var sessionId = sess.sessionId;
+    //var sessionId = sess.sessionId;
     var username = sess.username;
+    var sessionId = req.body.sessionId;
 
     var date = new Date();
     var timeEnd = date.getTime();
@@ -64,7 +65,6 @@ router.post('/api/endPhoneCall', function(req, res) {
         // Charge their account down here
 
     });
-
 });
 
 
@@ -140,7 +140,9 @@ router.post('/api/called', function(req, res) {
             called: true
         }
     },
-    {}, helpers.logError(err));
+    {}, function(err) {
+        helpers.logError(err)
+    });
 
     // Update the responding user's status to unavailable
     Users.findOneAndUpdate({
@@ -149,7 +151,10 @@ router.post('/api/called', function(req, res) {
         $set: {
             available: false
         }
-    }, helpers.logError(err));
+    },
+    {}, function(err) {
+        helpers.logError(err)
+    });
 
 });
 
