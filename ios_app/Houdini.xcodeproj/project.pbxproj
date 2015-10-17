@@ -19,6 +19,7 @@
 		1812E9CD1BD215100059B99C /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CC1BD215100059B99C /* ExtensionDelegate.m */; };
 		1812E9D01BD215100059B99C /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9CF1BD215100059B99C /* NotificationController.m */; };
 		1812E9D21BD215100059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9D11BD215100059B99C /* Assets.xcassets */; };
+		18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1D01BD28A8900BC52E8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */; };
 		18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */; settings = {ASSET_TAGS = (); }; };
 		18C0D1DB1BD2A74300BC52E8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -96,6 +97,8 @@
 		1812E9CF1BD215100059B99C /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		1812E9D11BD215100059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1812E9D31BD215100059B99C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HoudiniAPI.mm; sourceTree = "<group>"; };
+		18BE60F61BD2F26900EED21C /* HoudiniAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoudiniAPI.h; sourceTree = "<group>"; };
 		18C0D1CF1BD28A8900BC52E8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallMonitor.h; sourceTree = "<group>"; };
 		18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallMonitor.mm; sourceTree = "<group>"; };
@@ -104,7 +107,6 @@
 		18C0D1DA1BD2A74300BC52E8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
 		18C0D1DD1BD2ABB600BC52E8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		18C0D1DF1BD2B12600BC52E8 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoginViewController.mm; sourceTree = "<group>"; };
 		18C0D1F41BD2EC7400BC52E8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
@@ -161,9 +163,10 @@
 		1812E99D1BD2150F0059B99C /* Houdini */ = {
 			isa = PBXGroup;
 			children = (
-				18C0D1DF1BD2B12600BC52E8 /* Globals.h */,
 				18C0D1DD1BD2ABB600BC52E8 /* Utils.h */,
 				18C0D1DC1BD2ABB600BC52E8 /* Utils.mm */,
+				18BE60F61BD2F26900EED21C /* HoudiniAPI.h */,
+				18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */,
 				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
 				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */,
+				18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */,
 				1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */,
 				18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */,
 				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,

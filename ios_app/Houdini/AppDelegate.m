@@ -22,6 +22,7 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
 	MainViewController* mainViewController = [[MainViewController alloc] initWithRootViewController:loginViewController];
+	loginViewController.delegate = mainViewController;
 	if(![mainViewController loginRequired])
 	{
 		HomeViewController* homeViewController = [[HomeViewController alloc] init];

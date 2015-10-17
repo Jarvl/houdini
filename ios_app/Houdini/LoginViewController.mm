@@ -1,7 +1,6 @@
 
 #import "LoginViewController.h"
-#include "Utils.h"
-#include "Globals.h"
+#include "HoudiniAPI.h"
 
 @interface LoginViewController()
 -(void)_loginAction;
@@ -72,50 +71,26 @@
 {
 	NSString* username = _usernameField.text;
 	NSString* password = _passwordField.text;
-	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
-	[json_dict setObject:username forKey:@"username"];
-	[json_dict setObject:password forKey:@"password"];
-	NSData* json_data = utils::json_serialize(json_dict);
-	
-	std::string login_url_str = HOUDINI_API_HOST "/login";
-	
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:login_url_str.c_str()]]];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
-	[request setHTTPBody:json_data];
 	
 	[_usernameField setEnabled:NO];
 	[_passwordField setEnabled:NO];
 	[_loginButton setEnabled:NO];
 	[_loadingView setHidden:NO];
 	[_loadingView startAnimating];
-	utils::send_http_request(request, [self](NSURLResponse* response, NSData* data, NSError* error){
+	
+	HoudiniAPI::login([username UTF8String], [password UTF8String], [self](BOOL success, NSError* error){
 		[_usernameField setEnabled:YES];
 		[_passwordField setEnabled:YES];
 		[_loginButton setEnabled:YES];
 		[_loadingView setHidden:YES];
 		[_loadingView stopAnimating];
 		
-		if(data!=nil)
+		if(success)
 		{
-			NSString* data_str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-			if([data_str isEqualToString:@"true"])
+			if(self.delegate!=nil && [self.delegate respondsToSelector:@selector(loginViewControllerDidSuccessfullyLogin:)])
 			{
-				NSLog(@"login successful");
-				if(self.delegate!=nil && [self.delegate respondsToSelector:@selector(loginViewControllerDidSuccessfullyLogin:)])
-				{
-					[self.delegate loginViewControllerDidSuccessfullyLogin:self];
-				}
+				[self.delegate loginViewControllerDidSuccessfullyLogin:self];
 			}
-			else
-			{
-				NSLog(@"login failed");
-			}
-		}
-		else
-		{
-			NSLog(@"error sending login request");
 		}
 	});
 }

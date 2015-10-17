@@ -108,10 +108,8 @@
 
 -(void)loginViewControllerDidSuccessfullyLogin:(LoginViewController*)loginViewController
 {
-	[self dismissViewControllerAnimated:YES completion:^(){
-		HomeViewController* homeViewController = [[HomeViewController alloc] init];
-		[self pushViewController:homeViewController animated:YES];
-	}];
+	HomeViewController* homeViewController = [[HomeViewController alloc] init];
+	[self pushViewController:homeViewController animated:YES];
 }
 
 -(void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id>*)message
