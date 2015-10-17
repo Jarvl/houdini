@@ -1,7 +1,6 @@
 
 #import "HomeViewController.h"
 #include "HoudiniAPI.h"
-#include <thread>
 
 @interface HomeViewController()
 -(void)_saveAction;
@@ -44,7 +43,7 @@
 		
 		[_availabilitySwitch setCenter:CGPointMake((frame.size.width/2)+(LINE_WIDTH/2)-(switchSize.width/2), 40+(LINE_HEIGHT/2))];
 		
-		_phoneNumberField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)+4, 140, (LINE_WIDTH/2)-4, LINE_HEIGHT)];
+		_phoneNumberField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)+4, 100, (LINE_WIDTH/2)-4, LINE_HEIGHT)];
 		[_phoneNumberField setBorderStyle:UITextBorderStyleLine];
 		[_phoneNumberField setPlaceholder:@"555-555-5555"];
 		
@@ -54,10 +53,12 @@
 			[_phoneNumberField setText:phone_number];
 		}
 		
-		_phoneNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake((frame.size.width/2)-(LINE_WIDTH/2), 140, (LINE_WIDTH/2)-4, LINE_HEIGHT)];
+		_phoneNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake((frame.size.width/2)-(LINE_WIDTH/2), 100, (LINE_WIDTH/2)-4, LINE_HEIGHT)];
+		[_phoneNumberLabel setText:@"Phone Number"];
 		
-		_saveButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width/2)-(SAVEBUTTON_WIDTH/2), 190, SAVEBUTTON_WIDTH, SAVEBUTTON_HEIGHT)];
+		_saveButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width/2)-(SAVEBUTTON_WIDTH/2), 150, SAVEBUTTON_WIDTH, SAVEBUTTON_HEIGHT)];
 		[_saveButton setTitle:@"Save" forState:UIControlStateNormal];
+		[_saveButton setBackgroundColor:[UIColor grayColor]];
 		[_saveButton addTarget:self action:@selector(_saveAction) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self.view addSubview:_availabilitySwitch];
@@ -65,6 +66,8 @@
 		
 		[self.view addSubview:_phoneNumberField];
 		[self.view addSubview:_phoneNumberLabel];
+		
+		[self.view addSubview:_saveButton];
 	}
 	return self;
 }
@@ -88,7 +91,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	HoudiniAPI::isAvailable([](bool available, NSError* error){
+	HoudiniAPI::isAvailable([self](bool available, NSError* error){
 		[_availabilitySwitch setOn:(BOOL)available animated:YES];
 	});
 }

@@ -72,7 +72,7 @@
 -(BOOL)loginRequired
 {
 	//TODO check if logging in is necessary
-	return NO;
+	return YES;
 }
 
 
@@ -103,7 +103,10 @@
 	if([action isEqualToString:@"requestcall"])
 	{
 		NSLog(@"requesting phone call");
-		//TODO request phone call
+		NSString* phone_number = [[NSUserDefaults standardUserDefaults] objectForKey:@"phone_number"];
+		HoudiniAPI::requestPhoneCall([phone_number UTF8String], [](bool call_placed, NSError* error){
+			//
+		});
 	}
 }
 
