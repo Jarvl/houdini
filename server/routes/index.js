@@ -94,7 +94,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
         sessionId: sessionId,
         phoneNumber: phoneNumber,
         usernameRequesting: username
-    }).exec();
+    });
 
     wfcQuery.then(function(err) {
         helpers.logError(err);
