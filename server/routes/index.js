@@ -127,9 +127,6 @@ router.post('/api/called', function(req, res) {
     // Session id passed in as form/json value
     var sessionId = req.body.sessionId;
 
-    var date = new Date();
-    var time = date.getTime();
-
     // Update database - the user has been called
     // Called time is in seconds
     WaitingForCall.findOneAndUpdate({
@@ -154,7 +151,7 @@ router.post('/api/called', function(req, res) {
     },
     {}, function(err) {
         helpers.logError(err);
-        res.send(200);
+        res.sendStatus(200);
     });
 
 });
@@ -212,7 +209,10 @@ router.post('/login', function(req, res) {
         // Set session if passwords match
         if (hash == user.password) {
             req.session.username = username;
-            res.send("Logged in!");
+            res.send("true");
+        }
+        else {
+            res.send("false");
         }
     });
 });
