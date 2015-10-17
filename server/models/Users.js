@@ -5,7 +5,7 @@ var random = require('mongoose-simple-random');
 var usersSchema = new Schema({
     username: String,
     password: String,
-    phoneNumber: String,
+    //phoneNumber: String,
     firstName: String,
     lastName: String,
     stripeCode: {

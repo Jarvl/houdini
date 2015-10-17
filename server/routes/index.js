@@ -78,15 +78,16 @@ router.post('/api/endPhoneCall', function(req, res) {
 **/
 router.post('/api/requestPhoneCall', function(req, res) {
     var randomQuery;
+    var phoneNumber = req.body.phoneNumber;
     var sess = req.session;
     var sessionId = helpers.generateSID();
 
     // Set session id and username
-    sess.sessionId = sessionId;
+    //sess.sessionId = sessionId;
 
     // Session id from requesting phone
-    var sessionId = req.body.sessionId;
-    var username = req.body.username;
+    //var sessionId = req.body.sessionId;
+    var username = sess.username;
 
     // Store the call information
     var wfcQuery = WaitingForCall.create({
@@ -164,7 +165,7 @@ router.post('/signup', function(req, res) {
     var sess = req.session;
     var username = req.body.username;
     var password = req.body.password;
-    var phoneNumber = req.body.phoneNumber;
+    //var phoneNumber = req.body.phoneNumber;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
 
@@ -179,7 +180,7 @@ router.post('/signup', function(req, res) {
     Users.create({
         username: username,
         password: hash,
-        phoneNumber: phoneNumber,
+        //phoneNumber: phoneNumber,
         firstName: firstName,
         lastName: lastName
     },
