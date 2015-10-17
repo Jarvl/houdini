@@ -38,6 +38,12 @@ router.get('/api', function(req, res) {
 **/
 router.post('/api/requestPhoneCall', function(req, res) {
     var phoneNumber = req.body.phoneNumber;
+
+    // Send bad request status if there is no phone number
+    if (!phoneNumber) {
+        res.sendStatus(400);
+    }
+
     var sess = req.session;
     var sessionId = helpers.generateSID();
 
@@ -136,6 +142,11 @@ router.post('/api/endPhoneCall', function(req, res) {
     var resUserStripeCode = "";
     var reqUserStripeCode = "";
 
+    // Send bad request if time or sessionId doesn't exist
+    if (!time || !sessionId) {
+        res.sendStatus(400);
+    }
+
     // Find and remove the current calling session
     var wfcQuery = WaitingForCalls.findOne({
         sessionId: sessionId
@@ -186,8 +197,13 @@ router.post('/signup', function(req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
 
+    // Send false if the fields arent filled out
+    if (!username || !password || !firstName || !lastName) {
+        res.send("false");
+    }
+
     Users.findOne({username: username}).exec(function(user) {
-        if (user) res.send("You're already signed up bruh.");
+        if (user) res.send("false");
     });
 
     // Hash the password
