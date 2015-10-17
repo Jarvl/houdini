@@ -117,7 +117,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
  * Triggered by pressing the call button on the app.
  * Gets the session id for the call, sets the called status to true, and sets the call time.
  * Sets the calling user's status as not available
- * @response 200 OK - no response needed
+ * @response 200 OK
 **/
 router.post('/api/called', function(req, res) {
     // Session id from requesting phone
@@ -141,7 +141,7 @@ router.post('/api/called', function(req, res) {
         }
     },
     {}, function(err) {
-        helpers.logError(err)
+        helpers.logError(err);
     });
 
     // Update the responding user's status to unavailable
@@ -153,7 +153,8 @@ router.post('/api/called', function(req, res) {
         }
     },
     {}, function(err) {
-        helpers.logError(err)
+        helpers.logError(err);
+        res.send(200);
     });
 
 });
