@@ -77,7 +77,6 @@ router.post('/api/endPhoneCall', function(req, res) {
  * @response confirmation that users have been notified.
 **/
 router.post('/api/requestPhoneCall', function(req, res) {
-    var randomQuery;
     var phoneNumber = req.body.phoneNumber;
     var sess = req.session;
     var sessionId = helpers.generateSID();
@@ -100,16 +99,16 @@ router.post('/api/requestPhoneCall', function(req, res) {
         helpers.logError(err);
         // use setInterval here to find other people. Implement last
         // Find 10 available users and send then push notifications
-        randomQuery = Users.findRandom({available: true}, {}, {limit: 10}).exec();
-    });
+        var randomQuery = Users.findRandom({available: true}, {}, {limit: 10}).exec();
 
-    randomQuery.then(function(err, usersData) {
-        helpers.logError(err);
-        // Loop through each user
-        for (var i = 0; i < usersData.length; i++) {
-            // Send them a push notification with the session id and phone number attached
-        }
-        res.json(usersData);
+        randomQuery.then(function(err, usersData) {
+            helpers.logError(err);
+            // Loop through each user
+            for (var i = 0; i < usersData.length; i++) {
+                // Send them a push notification with the session id and phone number attached
+            }
+            res.json(usersData);
+        });
     });
 });
 
