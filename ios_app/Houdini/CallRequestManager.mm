@@ -123,7 +123,7 @@
 	HoudiniAPI::endPhoneCall([_sessionId UTF8String], (unsigned long)seconds, [self](bool paid, const std::string& charged, NSError* error){
 		if(paid)
 		{
-			NSMutableString* message = [NSMutableString stringWithString:@"You have been charged $"];
+			NSMutableString* message = [NSMutableString stringWithString:@"You just made $"];
 			[message appendString:[NSString stringWithUTF8String:charged.c_str()]];
 			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Finished"
 															message:message
