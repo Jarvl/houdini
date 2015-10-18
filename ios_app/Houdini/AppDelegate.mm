@@ -41,6 +41,7 @@
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)notification
 {
+	NSLog(@"recieved notification");
 	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString* notificationType = [notification objectForKey:@"notificationType"];
 	if(notificationType==nil)
@@ -49,6 +50,7 @@
 	}
 	else if([notificationType isEqualToString:@"callRequest"])
 	{
+		NSLog(@"recieved callRequest");
 		NSString* sessionId = [notification objectForKey:@"sessionId"];
 		[userDefaults setObject:sessionId forKey:@"request_call_session_id"];
 		[userDefaults synchronize];
