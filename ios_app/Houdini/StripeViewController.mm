@@ -22,6 +22,11 @@
 	return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
+	[self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 -(void)viewWillLayoutSubviews
 {
 	[super viewWillLayoutSubviews];
