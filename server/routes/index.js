@@ -22,6 +22,8 @@ var agent = module.exports = new apnagent.Agent();
 
 // Set our credentials
 agent.set('pfx file', pfx);
+// Set the passphrase
+agent.set('passphrase', secrets.apnPass);
 // our credentials were for development
 agent.enable('sandbox');
 
