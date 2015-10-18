@@ -97,7 +97,8 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
             // Loop through each user
             for (var i = 0; i < usersData.length; i++) {
-                var message = generateMessage(firstName, usersData[i].firstName);
+                // generate a message
+                var message = helpers.generateMessage(firstName, usersData[i].firstName);
 
                 // Send them a push notification with the session id and phone number attached
                 agent.createMessage()
