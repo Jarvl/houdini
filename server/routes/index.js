@@ -217,7 +217,7 @@ router.post('/api/endPhoneCall', function(req, res) {
                 currency: "usd",
                 customer: reqUserStripeCode, // person to be charged
                 destination: resUserStripeCode, // person to be receiving the money
-                application_fee: 1
+                application_fee: 5
             }, function(err, charge) {
                 console.log(charge);
                 res.json({

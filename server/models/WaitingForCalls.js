@@ -28,7 +28,7 @@ var waitingForCallsSchema = new Schema({
 // Set random plugin
 waitingForCallsSchema.plugin(random);
 
-waitingForCalls.save(function(err, wfc) {
+waitingForCallsSchema.save(function(err, wfc) {
     console.log(wfc);
 /*
     // If this is
