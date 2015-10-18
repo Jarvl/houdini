@@ -10,7 +10,11 @@
 
 
 @interface InterfaceController()
-
+{
+	NSTimer* clickTimer;
+	NSUInteger clickCount;
+}
+-(void)_timerClickEvent;
 @end
 
 
@@ -20,6 +24,8 @@
 	[super awakeWithContext:context];
 	
 	// Configure interface objects here.
+	clickTimer = nil;
+	clickCount = 0;
 	if([WCSession isSupported])
 	{
 		WCSession* session = [WCSession defaultSession];
@@ -45,11 +51,30 @@
 - (IBAction)onButtonPress {
 	NSLog(@"button has been pressed");
 	
-	NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-	[dict setObject:@"requestcall" forKey:@"action"];
-	WCSession* session = [WCSession defaultSession];
+	if(clickTimer!=nil)
+	{
+		[clickTimer invalidate];
+	}
+	clickTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(_timerClickEvent) userInfo:nil repeats:NO];
+	clickCount++;
 	
-	[session sendMessage:dict replyHandler:nil errorHandler:nil];
+	if(clickCount==3)
+	{
+		clickCount = 0;
+		[clickTimer invalidate];
+		
+		NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+		[dict setObject:@"requestcall" forKey:@"action"];
+		WCSession* session = [WCSession defaultSession];
+		
+		[session sendMessage:dict replyHandler:nil errorHandler:nil];
+		NSLog(@"sending message");
+	}
+}
+
+-(void)_timerClickEvent
+{
+	clickCount = 0;
 }
 @end
 

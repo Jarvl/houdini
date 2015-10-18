@@ -11,6 +11,5 @@
 #import <WatchConnectivity/WatchConnectivity.h>
 
 @interface InterfaceController : WKInterfaceController<WCSessionDelegate>
-
 - (IBAction)onButtonPress;
 @end
