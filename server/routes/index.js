@@ -302,23 +302,26 @@ router.post('/signup', function(req, res) {
     var hash = bcrypt.hashSync(password, secrets.passwordSeed);
 
     // Create a new user and auto-log them in
-    Users.save({
+    Users.create({
         username: username,
         password: hash,
         //phoneNumber: phoneNumber,
         firstName: firstName,
         lastName: lastName
     },
-    function(err, user) {
+    function(err) {
         helpers.logError(err);
         // Set the session - this will autolog them in
         sess.username = username;
-        returnObj = {
-            success: true,
-            url: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + secrets.stripeClientKey + "&scope=read_write",
-            password: user.password
-        };
-        res.json(returnObj);
+
+        Users.findOne({username: username}, function(err, user) {
+            returnObj = {
+                success: true,
+                url: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + secrets.stripeClientKey + "&scope=read_write",
+                password: user.password
+            };
+            res.json(returnObj);
+        });
     });
 });
 
