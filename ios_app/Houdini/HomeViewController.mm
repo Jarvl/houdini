@@ -54,6 +54,8 @@
 		_phoneNumberField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)+4, 100, (LINE_WIDTH/2)-4, LINE_HEIGHT)];
 		[_phoneNumberField setBorderStyle:UITextBorderStyleLine];
 		[_phoneNumberField setPlaceholder:@"555-555-5555"];
+		[_phoneNumberField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_phoneNumberField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		NSString* phone_number = [[NSUserDefaults standardUserDefaults] objectForKey:@"phone_number"];
 		if(phone_number!=nil)

@@ -47,24 +47,34 @@
 		_usernameField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 40, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_usernameField setBorderStyle:UITextBorderStyleLine];
 		[_usernameField setPlaceholder:@"Username"];
+		[_usernameField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_passwordField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 80, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_passwordField setBorderStyle:UITextBorderStyleLine];
 		[_passwordField setPlaceholder:@"Password"];
 		[_passwordField setSecureTextEntry:YES];
+		[_passwordField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_confirmPasswordField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 120, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_confirmPasswordField setBorderStyle:UITextBorderStyleLine];
 		[_confirmPasswordField setPlaceholder:@"Confirm Password"];
 		[_confirmPasswordField setSecureTextEntry:YES];
+		[_confirmPasswordField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_confirmPasswordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_firstNameField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/4)-(NAMEFIELD_WIDTH/2), 160, NAMEFIELD_WIDTH, FIELD_HEIGHT)];
 		[_firstNameField setBorderStyle:UITextBorderStyleLine];
 		[_firstNameField setPlaceholder:@"First Name"];
+		[_firstNameField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_firstNameField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_lastNameField = [[UITextField alloc] initWithFrame:CGRectMake((3*frame.size.width/4)-(NAMEFIELD_WIDTH/2), 160, NAMEFIELD_WIDTH, FIELD_HEIGHT)];
 		[_lastNameField setBorderStyle:UITextBorderStyleLine];
 		[_lastNameField setPlaceholder:@"Last Name"];
+		[_lastNameField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_lastNameField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_signupButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width/2)-(SIGNUP_WIDTH/2), 200, SIGNUP_WIDTH, SIGNUP_HEIGHT)];
 		[_signupButton setBackgroundColor:[UIColor grayColor]];

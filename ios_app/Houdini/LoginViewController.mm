@@ -34,11 +34,15 @@
 		_usernameField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 50, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_usernameField setBorderStyle:UITextBorderStyleLine];
 		[_usernameField setPlaceholder:@"Username"];
+		[_usernameField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_passwordField = [[UITextField alloc] initWithFrame:CGRectMake((frame.size.width/2)-(FIELD_WIDTH/2), 90, FIELD_WIDTH, FIELD_HEIGHT)];
 		[_passwordField setBorderStyle:UITextBorderStyleLine];
 		[_passwordField setPlaceholder:@"Password"];
 		[_passwordField setSecureTextEntry:YES];
+		[_passwordField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+		[_passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
 		
 		_loginButton = [[UIButton alloc] initWithFrame:CGRectMake((frame.size.width/2)-BUTTON_WIDTH-10, 130, BUTTON_WIDTH, BUTTON_HEIGHT)];
 		[_loginButton setBackgroundColor:[UIColor grayColor]];
