@@ -15,6 +15,8 @@
 		
 		_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 		_webView.delegate = self;
+		NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+		[_webView loadRequest:request];
 		[self.view addSubview:_webView];
 	}
 	return self;
