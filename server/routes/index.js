@@ -258,8 +258,11 @@ router.post('/api/acceptCallRequest', function(req, res) {
         $set: {
             available: false
         }
-    },
-    {}, function(err, user) {
+    }, function(err) {
+
+    });
+
+    Users.findOne({username: username}, function(err, user) {
         helpers.logError(err);
         res.json({
             accepted: true,
