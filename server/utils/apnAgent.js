@@ -1,10 +1,10 @@
 var secrets = require('../config/secrets');
 var join = require('path').join
-var pfx = join(__dirname, '../config/pfx.p12');
+var pfx = join(__dirname, '../config/Certificates.p12');
 
 
 // Create a new agent
-var apnagent = require('apnagent')
+var apnagent = require('apnagent');
 var agent = module.exports = new apnagent.Agent();
 
 // Set our credentials
