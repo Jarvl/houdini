@@ -122,14 +122,14 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
 
 /**
- * POST /api/called
+ * POST /api/checkCallSession
  * Sent by the responding user's phone.
  * Triggered by pressing the call button on the app.
  * Gets the session id for the call, sets the called status to true, and sets the call time.
  * Sets the calling user's status as not available
  * @response 200 OK
 **/
-router.post('/api/called', function(req, res) {
+router.post('/api/checkCallSession', function(req, res) {
     if (!req.session.username || !req.body.sessionId) {
         res.send("false");
     }
@@ -141,7 +141,14 @@ router.post('/api/called', function(req, res) {
     // Session id passed in as form/json value
     var sessionId = req.body.sessionId;
 
-    // Update database - the user has been called
+    // Check if person has already been called
+    WaitingForCalls.findOne({
+        sessionId: sessionId
+    }, function(err, wfc) {
+        if (wfc.called || wfc.died || wfc === undefined) res.json({valid: false});
+    });
+
+    // Update database - the user is being called
     // Called time is in seconds
     WaitingForCalls.findOneAndUpdate({
         sessionId: sessionId
@@ -165,7 +172,7 @@ router.post('/api/called', function(req, res) {
     },
     {}, function(err) {
         helpers.logError(err);
-        res.sendStatus(200);
+        res.json({valid: true});
     });
 
 });

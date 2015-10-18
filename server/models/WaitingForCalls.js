@@ -15,6 +15,10 @@ var waitingForCallsSchema = new Schema({
         type: Boolean,
         default: false
     },
+    died: {
+        type: Boolean,
+        default: false
+    },
     usersContacted: [{ username: String }]
 }, { collections: 'waitingforcalls' });
 
