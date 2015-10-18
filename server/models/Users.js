@@ -8,6 +8,10 @@ var usersSchema = new Schema({
     //phoneNumber: String,
     firstName: String,
     lastName: String,
+    deviceToken: {
+        type: String,
+        default: ''
+    },
     stripeCode: {
         type: String,
         default: ''
