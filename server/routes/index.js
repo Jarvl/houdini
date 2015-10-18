@@ -99,7 +99,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
                 agent.createMessage()
                     .device(usersData[i].deviceToken)
-                    .alert(message);
+                    .alert(message)
                     .expires('15s')
                     .send();
 
