@@ -303,7 +303,7 @@ router.post('/signup', function(req, res) {
 router.post('/login', function(req, res) {
     var returnObj = {
         success: false,
-        sessionId: ''
+        password: ''
     };
 
     var username = req.body.username;
@@ -320,10 +320,18 @@ router.post('/login', function(req, res) {
         // Set session if passwords match
         if (hash == user.password || password == user.password) {
             req.session.username = username;
-            res.send("true");
+            var returnObj = {
+                success: true,
+                password: hash
+            };
+            res.json(returnObj);
         }
         else {
-            res.send("false");
+            var returnObj = {
+                success: false,
+                errorMessage: "The passwords do not match",
+            };
+            res.json(returnObj);
         }
     });
 });
