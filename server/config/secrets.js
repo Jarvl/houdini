@@ -8,5 +8,8 @@ module.exports = {
   passwordSeed: '$2a$10$MEoqtT2UfEKFrLPeudvJ1e',
 
   stripeApiKey: 'sk_test_shvGMQoIXVZRaVqioBSqDpDI',
-  stripeClientKey: 'ca_7BDuGtRIPRxUrUqYSo3fx6DXmV9aVwsA'
+  stripeClientKey: 'ca_7BDuGtRIPRxUrUqYSo3fx6DXmV9aVwsA',
+
+  // apn key passphrase
+  apnPass: "dickbutt69"
 };

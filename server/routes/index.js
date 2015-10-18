@@ -173,7 +173,19 @@ router.post('/api/endPhoneCall', function(req, res) {
 
         reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
+
             // Charge req user's stripe account here
+/*
+            stripe.charges.create({
+                amount: 10,
+                currency: "usd",
+                customer: reqUserStripeCode, // person to be charged
+                destination: resUserStripeCode, // person to be receiving the money
+                application_fee: 1
+            }, function(err, charge) {
+                console.log(charge);
+                res.send("true");
+            });*/
             res.send("true");
         });
     });

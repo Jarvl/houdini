@@ -8,5 +8,8 @@ module.exports = {
   //passwordSeed: 'mySeed'
 
   stripeApiKey: 'api_key',
-  stripeClientKey: 'client_key'
+  stripeClientKey: 'client_key',
+
+  // apn key passphrase
+  apnPass: "myPassphrase"
 };

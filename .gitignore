@@ -28,3 +28,6 @@ node_modules
 
 # api keys and such
 server/config/secrets.js
+
+# private key files
+*.p12
