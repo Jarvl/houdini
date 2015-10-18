@@ -1,3 +1,4 @@
+var secrets = require('../config/secrets');
 var join = require('path').join
 var pfx = join(__dirname, '../config/pfx.p12');
 
