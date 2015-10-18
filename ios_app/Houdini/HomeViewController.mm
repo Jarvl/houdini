@@ -83,10 +83,12 @@
 		NSString* request_call_session_id = [userDefaults objectForKey:@"request_call_session_id"];
 		if(request_call_session_id!=nil)
 		{
+			NSLog(@"potential call request");
 			_pendingSessionId = request_call_session_id;
 			HoudiniAPI::checkCallSession([request_call_session_id UTF8String], [self](bool valid, NSError* error){
 				if(valid)
 				{
+					NSLog(@"pending call request");
 					UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Request"
 																	message:@"You have a pending call request"
 																   delegate:self
@@ -96,6 +98,7 @@
 				}
 				else
 				{
+					NSLog(@"dead call request");
 					_pendingSessionId = nil;
 					NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 					[userDefaults removeObjectForKey:@"request_call_session_id"];
