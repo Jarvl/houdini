@@ -266,7 +266,7 @@ router.post('/api/acceptCallRequest', function(req, res) {
         helpers.logError(err);
         res.json({
             accepted: true,
-            phoneNumber: user.phoneNumber
+            phoneNumber: "5136088703"
         });
     });
 });
