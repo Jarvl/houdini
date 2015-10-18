@@ -315,8 +315,6 @@ router.post('/login', function(req, res) {
     userQuery.then(function(user) {
         var hash = bcrypt.hashSync(password, secrets.passwordSeed);
 
-        mongoose.find
-
         // Set session if passwords match
         if (hash == user.password || password == user.password) {
             req.session.username = username;
