@@ -32,4 +32,6 @@ server/config/secrets.js
 # private key files
 *.p12
 
-*.xcuserstate
+ios_app/Houdini.xcodeproj/project.xcworkspace/xcuserdata/
+
+ios_app/Houdini.xcodeproj/project.xcworkspace/xcuserdata/apple.xcuserdatad/UserInterfaceState.xcuserstate
