@@ -148,7 +148,7 @@ router.post('/api/checkCallSession', function(req, res) {
     }, function(err, wfc) {
         if (wfc.called || wfc.died || wfc === undefined) res.json({valid: false});
         else {
-
+            res.json({valid: true});
         }
     });
 
