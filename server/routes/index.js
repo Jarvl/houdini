@@ -225,7 +225,8 @@ router.post('/api/endPhoneCall', function(req, res) {
                 });
             });*/
             res.json({
-                paid: true
+                paid: true,
+                charged: "$2"
             });
         });
     });
@@ -258,8 +259,8 @@ router.post('/api/acceptCallRequest', function(req, res) {
         $set: {
             available: false
         }
-    }, function(err) {
-
+    }, {}, function(err) {
+        helpers.logError(err);
     });
 
     Users.findOne({username: username}, function(err, user) {
