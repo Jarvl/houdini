@@ -31,3 +31,5 @@ server/config/secrets.js
 
 # private key files
 *.p12
+
+*.xcuserstate
