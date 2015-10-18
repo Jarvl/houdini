@@ -34,6 +34,7 @@
 		18EFF1AA1BD373E700312759 /* InitialLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A91BD373E700312759 /* InitialLoadView.m */; settings = {ASSET_TAGS = (); }; };
 		18EFF1AC1BD375A600312759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		18EFF1AE1BD3DC5400312759 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFF1AD1BD3DC5400312759 /* logo.png */; settings = {ASSET_TAGS = (); }; };
+		18FDBA621BD3EEA200BF1CE2 /* CallRequestManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18FDBA611BD3EEA200BF1CE2 /* CallRequestManager.mm */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,8 @@
 		18EFF1A91BD373E700312759 /* InitialLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialLoadView.m; sourceTree = "<group>"; };
 		18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18EFF1AD1BD3DC5400312759 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		18FDBA601BD3EEA200BF1CE2 /* CallRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallRequestManager.h; sourceTree = "<group>"; };
+		18FDBA611BD3EEA200BF1CE2 /* CallRequestManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallRequestManager.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */,
 				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
 				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
+				18FDBA601BD3EEA200BF1CE2 /* CallRequestManager.h */,
+				18FDBA611BD3EEA200BF1CE2 /* CallRequestManager.mm */,
 				18EFF1A81BD373E700312759 /* InitialLoadView.h */,
 				18EFF1A91BD373E700312759 /* InitialLoadView.m */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
@@ -398,6 +403,7 @@
 				18C0D1D31BD28B5100BC52E8 /* CallMonitor.mm in Sources */,
 				18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */,
 				1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */,
+				18FDBA621BD3EEA200BF1CE2 /* CallRequestManager.mm in Sources */,
 				18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */,
 				18EFF1AA1BD373E700312759 /* InitialLoadView.m in Sources */,
 				18EFF1A41BD35CCF00312759 /* StripeViewController.mm in Sources */,

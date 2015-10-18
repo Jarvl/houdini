@@ -3,13 +3,10 @@
 #import "MainViewController.h"
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import "CallRequestManager.h"
 #include "HoudiniAPI.h"
 
 @interface AppDelegate()
-{
-	NSString* _pendingSessionId;
-	CallMonitor* _callMonitor;
-}
 @end
 
 @implementation AppDelegate
@@ -54,18 +51,8 @@
 	}
 	else if([notificationType isEqualToString:@"callRequest"])
 	{
-		NSLog(@"recieved callRequest");
 		NSString* sessionId = [notification objectForKey:@"sessionId"];
-		[userDefaults setObject:sessionId forKey:@"request_call_session_id"];
-		[userDefaults synchronize];
-		_pendingSessionId = sessionId;
-		
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Request"
-														message:@"You have a pending call request"
-													   delegate:self
-											  cancelButtonTitle:nil
-											  otherButtonTitles:@"Accept", @"Decline", nil];
-		[alert show];
+		[CallRequestManager handleCallRequest:sessionId];
 	}
 }
 
@@ -89,96 +76,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
--(void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	NSString* title = alertView.title;
-	if([title isEqualToString:@"Call Request"])
-	{
-		NSString* buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-		if([buttonTitle isEqualToString:@"Accept"])
-		{
-			NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-			NSString* username = [userDefaults objectForKey:@"username"];
-			NSString* sessionId = _pendingSessionId;
-			HoudiniAPI::acceptCallRequest([username UTF8String], [sessionId UTF8String], [self](bool accepted, const std::string& phone_number, NSError* error){
-				if(accepted)
-				{
-					_callMonitor = [[CallMonitor alloc] init];
-					[_callMonitor setDelegate:self];
-					[_callMonitor call:[NSString stringWithUTF8String:phone_number.c_str()]];
-				}
-				else
-				{
-					if(error!=nil)
-					{
-						UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-																		message:[error localizedDescription]
-																	   delegate:nil
-															  cancelButtonTitle:nil
-															  otherButtonTitles:@"OK", nil];
-						[alert show];
-					}
-					else
-					{
-						UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Too Late"
-																		message:@"Call has already been claimed"
-																	   delegate:nil
-															  cancelButtonTitle:nil
-															  otherButtonTitles:@"OK", nil];
-						[alert show];
-					}
-				}
-			});
-		}
-		else if([buttonTitle isEqualToString:@"Decline"])
-		{
-			//_pendingSessionId = nil;
-			NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-			[userDefaults removeObjectForKey:@"request_call_session_id"];
-			[userDefaults synchronize];
-		}
-	}
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didBeginDialingCall:(CTCall*)call
-{
-	NSLog(@"dialing");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didConnectCall:(CTCall*)call
-{
-	NSLog(@"connected");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didDisconnectCall:(CTCall *)call withTotalCallTime:(double)seconds
-{
-	NSLog(@"call lasted %f seconds", seconds);
-	NSString* sessionId = _pendingSessionId;
-	_pendingSessionId = nil;
-	HoudiniAPI::endPhoneCall([sessionId UTF8String], (unsigned long)seconds, [self](bool paid, const std::string& charged, NSError* error){
-		if(paid)
-		{
-			NSMutableString* message = [NSMutableString stringWithString:@"You have been charged $"];
-			[message appendString:[NSString stringWithUTF8String:charged.c_str()]];
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Finished"
-															message:message
-														   delegate:nil
-												  cancelButtonTitle:nil
-												  otherButtonTitles:@"OK", nil];
-			[alert show];
-		}
-		else
-		{
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hey!"
-															message:@"You got a free call, due to the fact that I didn't have time to actually program a way around this"
-														   delegate:nil
-												  cancelButtonTitle:nil
-												  otherButtonTitles:@"OK", nil];
-			[alert show];
-		}
-	});
 }
 
 @end

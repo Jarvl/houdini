@@ -1,13 +1,10 @@
 
 #import "HomeViewController.h"
 #import "MainViewController.h"
+#import "CallRequestManager.h"
 #include "HoudiniAPI.h"
 
 @interface HomeViewController()
-{
-	CallMonitor* _callMonitor;
-	NSString* _pendingSessionId;
-}
 -(void)_saveAction;
 -(void)_onAvailabilityChange;
 @property (nonatomic, readonly) UILabel* availabilityLabel;
@@ -37,9 +34,6 @@
 		CGRect frame = self.view.frame;
 		
 		[self.view setBackgroundColor:[UIColor whiteColor]];
-		
-		_callMonitor = nil;
-		_pendingSessionId = nil;
 		
 		_availabilitySwitch = [[UISwitch alloc] init];
 		[_availabilitySwitch setOn:NO animated:NO];
@@ -79,33 +73,7 @@
 		
 		[self.view addSubview:_saveButton];
 		
-		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-		NSString* request_call_session_id = [userDefaults objectForKey:@"request_call_session_id"];
-		if(request_call_session_id!=nil)
-		{
-			NSLog(@"potential call request");
-			_pendingSessionId = request_call_session_id;
-			HoudiniAPI::checkCallSession([request_call_session_id UTF8String], [self](bool valid, NSError* error){
-				if(valid)
-				{
-					NSLog(@"pending call request");
-					UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Request"
-																	message:@"You have a pending call request"
-																   delegate:self
-														  cancelButtonTitle:nil
-														  otherButtonTitles:@"Accept", @"Decline", nil];
-					[alert show];
-				}
-				else
-				{
-					NSLog(@"dead call request");
-					_pendingSessionId = nil;
-					NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-					[userDefaults removeObjectForKey:@"request_call_session_id"];
-					[userDefaults synchronize];
-				}
-			});
-		}
+		[CallRequestManager checkForRequests];
 	}
 	return self;
 }
@@ -130,8 +98,22 @@
 {
 	[super viewWillAppear:animated];
 	HoudiniAPI::isAvailable([self](bool available, NSError* error){
+		if(available)
+		{
+			NSLog(@"availability is on");
+		}
+		else
+		{
+			NSLog(@"availability is off");
+		}
 		[_availabilitySwitch setOn:(BOOL)available animated:YES];
 	});
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[CallRequestManager checkForRequests];
 }
 
 -(void)_saveAction
@@ -178,96 +160,6 @@
 		else
 		{
 			NSLog(@"sent availability");
-		}
-	});
-}
-
--(void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	NSString* title = alertView.title;
-	if([title isEqualToString:@"Call Request"])
-	{
-		NSString* buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-		if([buttonTitle isEqualToString:@"Accept"])
-		{
-			NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-			NSString* username = [userDefaults objectForKey:@"username"];
-			NSString* sessionId = _pendingSessionId;
-			HoudiniAPI::acceptCallRequest([username UTF8String], [sessionId UTF8String], [self](bool accepted, const std::string& phone_number, NSError* error){
-				if(accepted)
-				{
-					_callMonitor = [[CallMonitor alloc] init];
-					[_callMonitor setDelegate:self];
-					[_callMonitor call:[NSString stringWithUTF8String:phone_number.c_str()]];
-				}
-				else
-				{
-					if(error!=nil)
-					{
-						UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-																		message:[error localizedDescription]
-																	   delegate:nil
-															  cancelButtonTitle:nil
-															  otherButtonTitles:@"OK", nil];
-						[alert show];
-					}
-					else
-					{
-						UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Too Late"
-																		message:@"Call has already been claimed"
-																	   delegate:nil
-															  cancelButtonTitle:nil
-															  otherButtonTitles:@"OK", nil];
-						[alert show];
-					}
-				}
-			});
-		}
-		else if([buttonTitle isEqualToString:@"Decline"])
-		{
-			_pendingSessionId = nil;
-			NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-			[userDefaults removeObjectForKey:@"request_call_session_id"];
-			[userDefaults synchronize];
-		}
-	}
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didBeginDialingCall:(CTCall*)call
-{
-	NSLog(@"dialing");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didConnectCall:(CTCall*)call
-{
-	NSLog(@"connected");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didDisconnectCall:(CTCall *)call withTotalCallTime:(double)seconds
-{
-	NSLog(@"call lasted %f seconds", seconds);
-	NSString* sessionId = _pendingSessionId;
-	_pendingSessionId = nil;
-	HoudiniAPI::endPhoneCall([sessionId UTF8String], (unsigned long)seconds, [self](bool paid, const std::string& charged, NSError* error){
-		if(paid)
-		{
-			NSMutableString* message = [NSMutableString stringWithString:@"You have been charged $"];
-			[message appendString:[NSString stringWithUTF8String:charged.c_str()]];
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Finished"
-															message:message
-														   delegate:nil
-												  cancelButtonTitle:nil
-												  otherButtonTitles:@"OK", nil];
-			[alert show];
-		}
-		else
-		{
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hey!"
-															message:@"You got a free call, due to the fact that I didn't have time to actually program a way around this"
-														   delegate:nil
-												  cancelButtonTitle:nil
-												  otherButtonTitles:@"OK", nil];
-			[alert show];
 		}
 	});
 }
