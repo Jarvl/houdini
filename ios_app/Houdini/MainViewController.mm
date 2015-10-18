@@ -1,11 +1,13 @@
 
 #import "MainViewController.h"
 #import "HomeViewController.h"
+#import "InitialLoadView.h"
 #include "HoudiniAPI.h"
 
 @interface MainViewController()
 {
 	CallMonitor* _callMonitor;
+	InitialLoadView* _loadingOverlayView;
 }
 @end
 
@@ -25,6 +27,24 @@
 			[session setDelegate:self];
 			[session activateSession];
 		}
+		
+		CGRect frame = self.view.frame;
+		
+		_loadingOverlayView = [[InitialLoadView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+		[self.view addSubview:_loadingOverlayView];
+		HoudiniAPI::isLoggedIn([self](bool logged_in, NSError* error){
+			if(logged_in)
+			{
+				HomeViewController* homeViewController = [[HomeViewController alloc] init];
+				[self pushViewController:homeViewController animated:NO];
+			}
+			[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(){
+				[_loadingOverlayView setAlpha:0.0];
+			} completion:^(BOOL finished){
+				[_loadingOverlayView removeFromSuperview];
+				[_loadingOverlayView setAlpha:1.0];
+			}];
+		});
 	}
 	return self;
 }

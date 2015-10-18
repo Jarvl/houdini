@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.lufinkey.Houdini2</string>
+	<string>com.lufinkey.HoudiniApp</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

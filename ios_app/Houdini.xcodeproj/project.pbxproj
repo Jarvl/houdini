@@ -29,6 +29,10 @@
 		18C0D1F71BD2ECC400BC52E8 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */; };
 		18C0D1FB1BD2ED1A00BC52E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */; };
 		18D6F2601BD2558C0023DA82 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */; };
+		18EFF1A41BD35CCF00312759 /* StripeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A31BD35CCF00312759 /* StripeViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		18EFF1A71BD35E9900312759 /* RegisterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A61BD35E9900312759 /* RegisterViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		18EFF1AA1BD373E700312759 /* InitialLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A91BD373E700312759 /* InitialLoadView.m */; settings = {ASSET_TAGS = (); }; };
+		18EFF1AC1BD375A600312759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,13 @@
 		18C0D1F61BD2ECC400BC52E8 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
 		18C0D1FA1BD2ED1A00BC52E8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		18D6F25F1BD2558C0023DA82 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		18EFF1A21BD35CCF00312759 /* StripeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StripeViewController.h; sourceTree = "<group>"; };
+		18EFF1A31BD35CCF00312759 /* StripeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StripeViewController.mm; sourceTree = "<group>"; };
+		18EFF1A51BD35E9900312759 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		18EFF1A61BD35E9900312759 /* RegisterViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RegisterViewController.mm; sourceTree = "<group>"; };
+		18EFF1A81BD373E700312759 /* InitialLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialLoadView.h; sourceTree = "<group>"; };
+		18EFF1A91BD373E700312759 /* InitialLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialLoadView.m; sourceTree = "<group>"; };
+		18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +177,8 @@
 				18BE60F51BD2F26900EED21C /* HoudiniAPI.mm */,
 				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
 				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
+				18EFF1A81BD373E700312759 /* InitialLoadView.h */,
+				18EFF1A91BD373E700312759 /* InitialLoadView.m */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
 				1812E9A21BD2150F0059B99C /* AppDelegate.mm */,
 				1812E9A41BD2150F0059B99C /* MainViewController.h */,
@@ -174,8 +187,13 @@
 				18C0D1F21BD2E6B300BC52E8 /* LoginViewController.mm */,
 				18C0D1D91BD2A74300BC52E8 /* HomeViewController.h */,
 				18C0D1DA1BD2A74300BC52E8 /* HomeViewController.mm */,
+				18EFF1A51BD35E9900312759 /* RegisterViewController.h */,
+				18EFF1A61BD35E9900312759 /* RegisterViewController.mm */,
+				18EFF1A21BD35CCF00312759 /* StripeViewController.h */,
+				18EFF1A31BD35CCF00312759 /* StripeViewController.mm */,
 				1812E99F1BD2150F0059B99C /* main.m */,
 				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
+				18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */,
 				1812E9AF1BD2150F0059B99C /* Info.plist */,
 			);
 			path = Houdini;
@@ -345,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */,
+				18EFF1AC1BD375A600312759 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +395,9 @@
 				18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */,
 				1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */,
 				18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */,
+				18EFF1AA1BD373E700312759 /* InitialLoadView.m in Sources */,
+				18EFF1A41BD35CCF00312759 /* StripeViewController.mm in Sources */,
+				18EFF1A71BD35E9900312759 /* RegisterViewController.mm in Sources */,
 				1812E9A31BD2150F0059B99C /* AppDelegate.mm in Sources */,
 				18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */,
 				1812E9A01BD2150F0059B99C /* main.m in Sources */,
@@ -509,7 +531,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -526,7 +548,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -544,7 +566,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				IBSC_MODULE = Houdini_WatchKit_Extension;
 				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -562,7 +584,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				IBSC_MODULE = Houdini_WatchKit_Extension;
 				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -576,12 +598,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -591,12 +612,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.HoudiniApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

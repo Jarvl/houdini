@@ -22,11 +22,6 @@
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
 	MainViewController* mainViewController = [[MainViewController alloc] initWithRootViewController:loginViewController];
 	loginViewController.delegate = mainViewController;
-	if(![mainViewController loginRequired])
-	{
-		HomeViewController* homeViewController = [[HomeViewController alloc] init];
-		[mainViewController pushViewController:homeViewController animated:NO];
-	}
 	[self.window setRootViewController:mainViewController];
 	[self.window makeKeyAndVisible];
     return YES;
@@ -34,14 +29,10 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
 	NSLog(@"Did Register for Remote Notifications with Device Token (%@)", deviceToken);
-	NSString * token = [NSString stringWithFormat:@"%@", deviceToken];
-	//Format token as you need:
-	token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-	token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
-	token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
-	[[NSUserDefaults standardUserDefaults] setObject:token forKey:@"apnsToken"];
-	
-	HoudiniAPI::setDeviceToken(std::string([token UTF8String], [token length]));
+	NSString *deviceTokenStr = [[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""];
+	deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString: @">" withString: @""] ;
+	deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString: @" " withString: @""];
+	HoudiniAPI::setDeviceToken([deviceTokenStr UTF8String]);
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
 	NSLog(@"Did Fail to Register for Remote Notifications");
