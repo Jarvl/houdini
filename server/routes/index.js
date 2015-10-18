@@ -7,6 +7,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var helpers = require('../utils/helpers');
 var secrets = require('../config/secrets');
+
 var WaitingForCalls = require('../models/WaitingForCalls');
 var Users = require('../models/Users');
 
@@ -34,7 +35,7 @@ router.get('/api', function(req, res) {
         agent.createMessage()
             .device(user.deviceToken)
             .alert('Hello Universe!')
-            .expires('1h')
+            .expires('15s')
             .send();
 
         res.sendStatus(200);
@@ -51,12 +52,13 @@ router.get('/api', function(req, res) {
  * @response confirmation that users have been notified.
 **/
 router.post('/api/requestPhoneCall', function(req, res) {
-    var phoneNumber = req.body.phoneNumber;
-
     // Send bad request status if there is no phone number
-    if (!phoneNumber) {
+    if (!req.body.phoneNumber || !req.session.username) {
         res.send("false");
     }
+
+    var firstName = "";
+    var phoneNumber = req.body.phoneNumber;
 
     var sess = req.session;
     var sessionId = helpers.generateSID();
@@ -68,6 +70,12 @@ router.post('/api/requestPhoneCall', function(req, res) {
     //var sessionId = req.body.sessionId;
     var username = sess.username;
 
+    // Find the usr's first name
+    var reqUserQuery = Users.findOne({ username: username }, function(err, user) {
+        helpers.logError(err);
+        firstName = user.firstName;
+    })
+
     // Store the call information
     var wfcQuery = WaitingForCalls.create({
         sessionId: sessionId,
@@ -76,13 +84,25 @@ router.post('/api/requestPhoneCall', function(req, res) {
     })
 
     wfcQuery.then(function(err) {
+
+
         helpers.logError(err);
         // use setInterval here to find other people. Implement last
         // Find 10 available users and send then push notifications
         Users.findRandom({available: true}, {}, {limit: 10}, function(err, usersData) {
             helpers.logError(err);
+
+
             // Loop through each user
             for (var i = 0; i < usersData.length; i++) {
+                var message = generateMessage(firstName, usersData[i].firstName);
+
+                agent.createMessage()
+                    .device(usersData[i].deviceToken)
+                    .alert(message);
+                    .expires('15s')
+                    .send();
+
                 // Send them a push notification with the session id and phone number attached
             }
             res.send("true");
@@ -100,6 +120,10 @@ router.post('/api/requestPhoneCall', function(req, res) {
  * @response 200 OK
 **/
 router.post('/api/called', function(req, res) {
+    if (!req.session.username || !req.body.sessionId) {
+        res.send("false");
+    }
+
     // Session id from requesting phone
     var sess = req.session;
     var username = sess.username;
@@ -147,6 +171,11 @@ router.post('/api/called', function(req, res) {
  * @response A confirmation that the account was charged.
 **/
 router.post('/api/endPhoneCall', function(req, res) {
+    // Send bad request if time or sessionId doesn't exist
+    if (!req.body.time || !req.body.sessionId || !req.session.username) {
+        res.send("false");
+    }
+
     var time = req.body.time;
     var sess = req.session;
     var sessionId = req.body.sessionId;
@@ -155,11 +184,6 @@ router.post('/api/endPhoneCall', function(req, res) {
 
     var resUserStripeCode = "";
     var reqUserStripeCode = "";
-
-    // Send bad request if time or sessionId doesn't exist
-    if (!time || !sessionId) {
-        res.send("false");
-    }
 
     // Find and remove the current calling session
     var wfcQuery = WaitingForCalls.findOne({
@@ -211,6 +235,18 @@ router.post('/api/endPhoneCall', function(req, res) {
  * Sign a user up!
 **/
 router.post('/signup', function(req, res) {
+    var returnObj = {
+        status: '',
+        url: ''
+    };
+
+    // Send false if the fields arent filled out
+    if (!req.body.username || !req.body.password || !req.body.firstName || !req.body.lastName) {
+        returnObj.status = "error";
+        returnObj.errorMessage = "One or more fields were left blank";
+        res.json(returnObj);
+    }
+
     var sess = req.session;
     var username = req.body.username;
     var password = req.body.password;
@@ -218,13 +254,12 @@ router.post('/signup', function(req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
 
-    // Send false if the fields arent filled out
-    if (!username || !password || !firstName || !lastName) {
-        res.send("false");
-    }
-
     Users.findOne({username: username}).exec(function(user) {
-        if (user) res.send("false");
+        if (user) {
+            returnObj.status = "error";
+            returnObj.errorMessage = "The username " + username + " is taken";
+            res.json(returnObj);
+        }
     });
 
     // Hash the password
@@ -242,7 +277,9 @@ router.post('/signup', function(req, res) {
         helpers.logError(err);
         // Set the session - this will autolog them in
         sess.username = username;
-        res.send("true");
+        returnObj.status = "success";
+        returnObj.url = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + secrets.stripeClientKey + '&scope=read_write";
+        res.json(returnObj);
     });
 });
 
