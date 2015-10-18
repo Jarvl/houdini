@@ -74,9 +74,10 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
     // Find the usr's first name
     var reqUserQuery = Users.findOne({ username: username }, function(err, user) {
-        if (user === undefined) return;
-        helpers.logError(err);
-        firstName = user.firstName;
+        if (user !== undefined) {
+            helpers.logError(err);
+            firstName = user.firstName;
+        }
     })
 
     // Store the call information
