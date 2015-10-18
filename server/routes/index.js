@@ -10,6 +10,8 @@ var secrets = require('../config/secrets');
 
 var WaitingForCalls = require('../models/WaitingForCalls');
 var Users = require('../models/Users');
+var Sessions = require('../models/Sessions');
+
 
 var stripe = require('stripe')(secrets.stripeApiKey);
 
@@ -88,7 +90,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
 
         helpers.logError(err);
         // use setInterval here to find other people. Implement last
-        // Find 10 available users and send then push notifications
+        // Find 10 available users and send then push notifications every 15 seconds
         Users.findRandom({available: true}, {}, {limit: 10}, function(err, usersData) {
             helpers.logError(err);
 
@@ -97,13 +99,19 @@ router.post('/api/requestPhoneCall', function(req, res) {
             for (var i = 0; i < usersData.length; i++) {
                 var message = generateMessage(firstName, usersData[i].firstName);
 
+                // Send them a push notification with the session id and phone number attached
                 agent.createMessage()
                     .device(usersData[i].deviceToken)
+                    .set({
+                        sessionId: sessionId,
+                        phoneNumber: phoneNumber
+                    })
                     .alert(message)
                     .expires('15s')
                     .send();
 
-                // Send them a push notification with the session id and phone number attached
+                // Set an interval that keeps track of the time and checks
+
             }
             res.send("true");
         });
@@ -236,13 +244,14 @@ router.post('/api/endPhoneCall', function(req, res) {
 **/
 router.post('/signup', function(req, res) {
     var returnObj = {
-        status: '',
-        url: ''
+        success: false,
+        url: '',
+        password: ''
     };
 
     // Send false if the fields arent filled out
     if (!req.body.username || !req.body.password || !req.body.firstName || !req.body.lastName) {
-        returnObj.status = "error";
+        returnObj.success = false;
         returnObj.errorMessage = "One or more fields were left blank";
         res.json(returnObj);
     }
@@ -256,7 +265,7 @@ router.post('/signup', function(req, res) {
 
     Users.findOne({username: username}).exec(function(user) {
         if (user) {
-            returnObj.status = "error";
+            returnObj.success = false;
             returnObj.errorMessage = "The username " + username + " is taken";
             res.json(returnObj);
         }
@@ -266,19 +275,22 @@ router.post('/signup', function(req, res) {
     var hash = bcrypt.hashSync(password, secrets.passwordSeed);
 
     // Create a new user and auto-log them in
-    Users.create({
+    Users.save({
         username: username,
         password: hash,
         //phoneNumber: phoneNumber,
         firstName: firstName,
         lastName: lastName
     },
-    function(err) {
+    function(err, user) {
         helpers.logError(err);
         // Set the session - this will autolog them in
         sess.username = username;
-        returnObj.status = "success";
-        returnObj.url = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + secrets.stripeClientKey + '&scope=read_write";
+        returnObj = {
+            success: true,
+            url: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + secrets.stripeClientKey + "&scope=read_write",
+            password: user.password
+        };
         res.json(returnObj);
     });
 });
@@ -289,6 +301,11 @@ router.post('/signup', function(req, res) {
  * Log a user in!
 **/
 router.post('/login', function(req, res) {
+    var returnObj = {
+        success: false,
+        sessionId: ''
+    };
+
     var username = req.body.username;
     var password = req.body.password;
 
@@ -297,8 +314,11 @@ router.post('/login', function(req, res) {
 
     userQuery.then(function(user) {
         var hash = bcrypt.hashSync(password, secrets.passwordSeed);
+
+        mongoose.find
+
         // Set session if passwords match
-        if (hash == user.password) {
+        if (hash == user.password || password == user.password) {
             req.session.username = username;
             res.send("true");
         }
@@ -345,6 +365,13 @@ router.get('/api/isAvailable', function(req, res) {
         if (user.available) res.send("true");
         else res.send("false");
     });
+});
+
+
+// Checks if a user is logged in
+router.get('/api/isLoggedIn', function(req, res) {
+    if (req.session.username) res.send("true");
+    else res.send("false");
 });
 
 

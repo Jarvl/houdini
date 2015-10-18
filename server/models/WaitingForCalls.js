@@ -14,7 +14,8 @@ var waitingForCallsSchema = new Schema({
     called: {
         type: Boolean,
         default: false
-    }
+    },
+    usersContacted: [{ username: String }]
 }, { collections: 'waitingforcalls' });
 
 // Set random plugin
