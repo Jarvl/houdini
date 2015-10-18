@@ -55,6 +55,9 @@ app.use(function(req, res, next) {
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Disable cache
+app.disable('etag');
+
 app.use('/', routes);
 app.use('/users', users);
 
