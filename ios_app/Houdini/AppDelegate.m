@@ -12,6 +12,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+	[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
 	MainViewController* mainViewController = [[MainViewController alloc] initWithRootViewController:loginViewController];
@@ -24,6 +25,19 @@
 	[self.window setRootViewController:mainViewController];
 	[self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+	NSLog(@"Did Register for Remote Notifications with Device Token (%@)", deviceToken);
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+	NSLog(@"Did Fail to Register for Remote Notifications");
+	NSLog(@"%@, %@", error, error.localizedDescription);
+}
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)notification
+{
+	NSLog(@"got eem");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

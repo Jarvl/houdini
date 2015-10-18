@@ -294,20 +294,28 @@
 				TargetAttributes = {
 					1812E99A1BD2150F0059B99C = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RL98QGQJCL;
+						DevelopmentTeam = 2S3D8J8M3T;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
 					1812E9B11BD2150F0059B99C = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RL98QGQJCL;
+						DevelopmentTeam = 2S3D8J8M3T;
 					};
 					1812E9C01BD2150F0059B99C = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RL98QGQJCL;
+						DevelopmentTeam = 2S3D8J8M3T;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -573,7 +581,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -588,7 +596,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Houdini/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
