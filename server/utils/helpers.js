@@ -4,7 +4,7 @@ module.exports = {
         if (err) console.log(err);
     },
 
-    shuffleArray: function(arrayLength) {
+    generateIndex: function(arrayLength) {
         var rand = Math.floor(Math.random() * arrayLength);
         return rand;
     },
@@ -27,7 +27,7 @@ module.exports = {
             "Get off Snapgram and do your job, " + resFirstName,
             "Hey " + resFirstName + ", do you mind giving " + reqFirstName + " a ring real quick?"
         ];
-        var index = shuffleArray(messages.length);
+        var index = this.generateIndex(messages.length);
         return messages[index];
     }
 };
