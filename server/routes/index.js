@@ -106,7 +106,8 @@ router.post('/api/requestPhoneCall', function(req, res) {
                     .device(usersData[i].deviceToken)
                     .set({
                         sessionId: sessionId,
-                        phoneNumber: phoneNumber
+                        phoneNumber: phoneNumber,
+                        notificationType: "callRequest"
                     })
                     .alert(message)
                     .expires('15s')
@@ -146,34 +147,11 @@ router.post('/api/checkCallSession', function(req, res) {
         sessionId: sessionId
     }, function(err, wfc) {
         if (wfc.called || wfc.died || wfc === undefined) res.json({valid: false});
+        else {
+
+        }
     });
 
-    // Update database - the user is being called
-    // Called time is in seconds
-    WaitingForCalls.findOneAndUpdate({
-        sessionId: sessionId
-    }, {
-        $set: {
-            usernameResponding: username,
-            called: true
-        }
-    },
-    {}, function(err) {
-        helpers.logError(err);
-    });
-
-    // Update the responding user's status to unavailable
-    Users.findOneAndUpdate({
-        username: username
-    }, {
-        $set: {
-            available: false
-        }
-    },
-    {}, function(err) {
-        helpers.logError(err);
-        res.json({valid: true});
-    });
 
 });
 
@@ -189,11 +167,11 @@ router.post('/api/checkCallSession', function(req, res) {
 **/
 router.post('/api/endPhoneCall', function(req, res) {
     // Send bad request if time or sessionId doesn't exist
-    if (!req.body.time || !req.body.sessionId || !req.session.username) {
+    if (!req.body.seconds || !req.body.sessionId || !req.session.username) {
         res.send("false");
     }
 
-    var time = req.body.time;
+    var seconds = req.body.seconds;
     var sess = req.session;
     var sessionId = req.body.sessionId;
     var usernameResponding = sess.username;
@@ -229,8 +207,11 @@ router.post('/api/endPhoneCall', function(req, res) {
         reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
 
+            // We charge 50 cents a minute with a 10% application fee
+            var toCharge = Math.ceil(50 * (seconds / 60));
+            var appFee = Math.ceil(toCharge * .1);
+
             // Charge req user's stripe account here
-/*
             stripe.charges.create({
                 amount: 10,
                 currency: "usd",
@@ -239,9 +220,48 @@ router.post('/api/endPhoneCall', function(req, res) {
                 application_fee: 1
             }, function(err, charge) {
                 console.log(charge);
-                res.send("true");
-            });*/
-            res.send("true");
+                res.json({
+                    paid: true,
+                    charged: ""
+                });
+            });
+        });
+    });
+});
+
+
+router.post('/api/acceptCallRequest', function(req, res) {
+    var sessionId = req.body.sessionId;
+    var username = req.body.username;
+
+    // Find the call and update the responder info
+    // Update database - the user is being called
+    // Called time is in seconds
+    WaitingForCalls.findOneAndUpdate({
+        sessionId: sessionId
+    }, {
+        $set: {
+            usernameResponding: username,
+            called: true
+        }
+    },
+    {}, function(err) {
+        helpers.logError(err);
+    });
+
+    // Update the responding user's status to unavailable
+    Users.findOneAndUpdate({
+        username: username
+    }, {
+        $set: {
+            available: false
+        }
+    },
+    {}, function(err, user) {
+        helpers.logError(err);
+        res.json({
+            accepted: true,
+            phoneNumber: user.phoneNumber
         });
     });
 });

@@ -6,6 +6,9 @@ var waitingForCallsSchema = new Schema({
     sessionId: String,
     phoneNumber: String,
     usernameRequesting: String,
+    // Javascript getTime()
+    timeStart: Number,
+    timeEnd: Number,
     // usernameResponding is populated after the user accepts a call request
     usernameResponding: {
         type: String,

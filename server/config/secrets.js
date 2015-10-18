@@ -7,8 +7,8 @@ module.exports = {
   // bcrypt password seed
   passwordSeed: '$2a$10$MEoqtT2UfEKFrLPeudvJ1e',
 
-  stripeApiKey: 'sk_test_shvGMQoIXVZRaVqioBSqDpDI',
-  stripeClientKey: 'ca_7BDuGtRIPRxUrUqYSo3fx6DXmV9aVwsA',
+  stripeApiKey: 'sk_test_2lThadjYTX9nnispMbveUsXU',
+  stripeClientKey: 'ca_7BMfR0MUAsxYkvsnBKp6jVYWlZdK5C2n',
 
   // apn key passphrase
   apnPass: "dickbutt69"
