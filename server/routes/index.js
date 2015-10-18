@@ -94,6 +94,7 @@ router.post('/api/requestPhoneCall', function(req, res) {
         Users.findRandom({available: true}, {}, {limit: 10}, function(err, usersData) {
             helpers.logError(err);
 
+            // This should all be functionalized in helpers.js at some point
 
             // Loop through each user
             for (var i = 0; i < usersData.length; i++) {

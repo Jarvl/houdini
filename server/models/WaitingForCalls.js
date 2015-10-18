@@ -21,5 +21,16 @@ var waitingForCallsSchema = new Schema({
 // Set random plugin
 waitingForCallsSchema.plugin(random);
 
+waitingForCalls.save(function(err, wfc) {
+    console.log(wfc);
+/*
+    // If this is
+    if (!wfc.called) {
+        var timeout = setTimeout(function() {
+
+        }, 1500);
+    }*/
+});
+
 var WaitingForCalls = mongoose.model('waitingForCalls', waitingForCallsSchema);
 module.exports = WaitingForCalls;
