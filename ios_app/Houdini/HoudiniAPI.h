@@ -13,6 +13,9 @@ public:
 	static void signup(const std::string& username, const std::string& password, const std::string& first_name, const std::string& last_name, std::function<void(bool success, const std::string& url, const std::string& passwordHash, const std::string& error_desc, NSError* error)> onfinish);
 	
 	static void requestPhoneCall(const std::string& phone_number, std::function<void(bool success, NSError* error)> onfinish);
+	static void checkCallSession(const std::string& sessionId, std::function<void(bool valid, NSError* error)> onfinish);
+	static void acceptCallRequest(const std::string& username, const std::string& sessionId, std::function<void(bool accepted, const std::string& phone_number, NSError* error)> onfinish);
+	static void endPhoneCall(const std::string& sessionId, unsigned long seconds, std::function<void(bool paid, const std::string& charged, NSError* error)> onfinish);
 	
 	static void setAvailable(bool available, std::function<void(NSError* error)> onfinish);
 	static void isAvailable(std::function<void(bool available, NSError* error)> onfinish);

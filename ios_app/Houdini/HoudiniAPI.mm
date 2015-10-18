@@ -167,6 +167,97 @@ void HoudiniAPI::requestPhoneCall(const std::string& phone_number, std::function
 	});
 }
 
+void HoudiniAPI::checkCallSession(const std::string& sessionId, std::function<void(bool valid, NSError* error)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/checkCallSession"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL valid = [[data_dict objectForKey:@"valid"] boolValue];
+			if(onfinish)
+			{
+				onfinish((bool)valid, error);
+			}
+		}
+		else
+		{
+			onfinish(false, error);
+		}
+	});
+}
+
+void HoudiniAPI::acceptCallRequest(const std::string& username, const std::string& sessionId, std::function<void(bool accepted, const std::string& phone_number, NSError* error)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:username.c_str()] forKey:@"username"];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/acceptCallRequest"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL accepted = [[data_dict objectForKey:@"accepted"] boolValue];
+			NSString* phoneNumber = [data_dict objectForKey:@"phoneNumber"];
+			if(onfinish)
+			{
+				onfinish((bool)accepted, [phoneNumber UTF8String], error);
+			}
+		}
+		else
+		{
+			onfinish(false, "", error);
+		}
+	});
+}
+
+void HoudiniAPI::endPhoneCall(const std::string& sessionId, unsigned long seconds, std::function<void(bool, const std::string&, NSError*)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	[json_dict setObject:[NSNumber numberWithUnsignedLong:seconds] forKey:@"seconds"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/endPhoneCall"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL paid = [[data_dict objectForKey:@"paid"] boolValue];
+			NSString* charged = [data_dict objectForKey:@"charged"];
+			if(onfinish)
+			{
+				onfinish((bool)paid, [charged UTF8String], error);
+			}
+		}
+		else
+		{
+			onfinish(false, "", error);
+		}
+	});
+}
+
 void HoudiniAPI::setAvailable(bool available, std::function<void(NSError*)> onfinish)
 {
 	NSNumber* value = [NSNumber numberWithBool:(BOOL)available];

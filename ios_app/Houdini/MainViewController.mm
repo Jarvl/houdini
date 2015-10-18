@@ -7,7 +7,6 @@
 
 @interface MainViewController()
 {
-	CallMonitor* _callMonitor;
 	InitialLoadView* _loadingOverlayView;
 }
 -(void)hideLoadingOverlayAnimated;
@@ -19,8 +18,6 @@
 {
 	if(self = [super initWithRootViewController:rootViewController])
 	{
-		_callMonitor = [[CallMonitor alloc] init];
-		_callMonitor.delegate = self;
 		[self setNavigationBarHidden:YES];
 		
 		if([WCSession isSupported])
@@ -94,11 +91,6 @@
 	[contactStore executeSaveRequest:saveRequest error:&error];
 }
 
--(BOOL)beginTrackingCallToNumber:(NSString *)number
-{
-	return [_callMonitor call:number];
-}
-
 -(void)hideLoadingOverlayAnimated
 {
 	[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(){
@@ -109,29 +101,13 @@
 	}];
 }
 
-
--(void)callMonitor:(CallMonitor*)callMonitor didBeginDialingCall:(CTCall*)call
-{
-	NSLog(@"dialing");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didConnectCall:(CTCall*)call
-{
-	NSLog(@"connected");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didDisconnectCall:(CTCall *)call withTotalCallTime:(double)seconds
-{
-	NSLog(@"call lasted %f seconds", seconds);
-}
-
 -(void)loginViewControllerDidSuccessfullyLogin:(LoginViewController*)loginViewController
 {
 	HomeViewController* homeViewController = [[HomeViewController alloc] init];
 	[self pushViewController:homeViewController animated:YES];
 }
 
--(void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id>*)message
+-(void)session:(WCSession*)session didReceiveMessage:(NSDictionary<NSString *,id>*)message
 {
 	NSString* action = [message objectForKey:@"action"];
 	if([action isEqualToString:@"requestcall"])
