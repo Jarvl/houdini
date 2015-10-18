@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1812E9A01BD2150F0059B99C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E99F1BD2150F0059B99C /* main.m */; };
-		1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A21BD2150F0059B99C /* AppDelegate.m */; };
+		1812E9A31BD2150F0059B99C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A21BD2150F0059B99C /* AppDelegate.mm */; };
 		1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1812E9A51BD2150F0059B99C /* MainViewController.mm */; };
 		1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812E9AA1BD2150F0059B99C /* Assets.xcassets */; };
 		1812E9B31BD2150F0059B99C /* Houdini WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1812E9B21BD2150F0059B99C /* Houdini WatchKit App.app */; };
@@ -77,7 +77,7 @@
 		1812E99B1BD2150F0059B99C /* Houdini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Houdini.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1812E99F1BD2150F0059B99C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1812E9A11BD2150F0059B99C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1812E9A21BD2150F0059B99C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1812E9A21BD2150F0059B99C /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		1812E9A41BD2150F0059B99C /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1812E9A51BD2150F0059B99C /* MainViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
 		1812E9AA1BD2150F0059B99C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				18C0D1D11BD28B5100BC52E8 /* CallMonitor.h */,
 				18C0D1D21BD28B5100BC52E8 /* CallMonitor.mm */,
 				1812E9A11BD2150F0059B99C /* AppDelegate.h */,
-				1812E9A21BD2150F0059B99C /* AppDelegate.m */,
+				1812E9A21BD2150F0059B99C /* AppDelegate.mm */,
 				1812E9A41BD2150F0059B99C /* MainViewController.h */,
 				1812E9A51BD2150F0059B99C /* MainViewController.mm */,
 				18C0D1D41BD29E2800BC52E8 /* LoginViewController.h */,
@@ -313,7 +313,7 @@
 						DevelopmentTeam = 2S3D8J8M3T;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -376,7 +376,7 @@
 				18BE60F71BD2F26900EED21C /* HoudiniAPI.mm in Sources */,
 				1812E9A61BD2150F0059B99C /* MainViewController.mm in Sources */,
 				18C0D1DE1BD2ABB600BC52E8 /* Utils.mm in Sources */,
-				1812E9A31BD2150F0059B99C /* AppDelegate.m in Sources */,
+				1812E9A31BD2150F0059B99C /* AppDelegate.mm in Sources */,
 				18C0D1F31BD2E6B300BC52E8 /* LoginViewController.mm in Sources */,
 				1812E9A01BD2150F0059B99C /* main.m in Sources */,
 				18C0D1DB1BD2A74300BC52E8 /* HomeViewController.mm in Sources */,
@@ -509,7 +509,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -526,7 +526,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Houdini WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -544,7 +544,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				IBSC_MODULE = Houdini_WatchKit_Extension;
 				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -562,7 +562,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				IBSC_MODULE = Houdini_WatchKit_Extension;
 				INFOPLIST_FILE = "Houdini WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lufinkey.Houdini2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;

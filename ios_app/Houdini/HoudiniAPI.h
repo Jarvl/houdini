@@ -15,6 +15,11 @@ public:
 	
 	static void setAvailable(bool available, std::function<void(NSError* error)> onfinish);
 	static void isAvailable(std::function<void(bool available, NSError* error)> onfinish);
+	
+	static void setDeviceToken(const std::string& deviceToken);
+	
+private:
+	static std::string deviceToken;
 };
 
 #endif
