@@ -14,7 +14,7 @@
                             <dateFormatterStyle key="dateStyle" short="YES"/>
                             <dateFormatterStyle key="timeStyle" short="YES"/>
                         </dateLabel>
-                        <button width="50" height="50" alignment="center" verticalAlignment="center" id="a4E-HY-jtY">
+                        <button width="88" height="91" alignment="center" verticalAlignment="center" id="a4E-HY-jtY">
                             <connections>
                                 <action selector="onButtonPress" destination="AgC-eL-Hgc" id="zn4-Rn-2Un"/>
                             </connections>

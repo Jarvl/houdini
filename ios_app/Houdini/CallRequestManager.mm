@@ -31,6 +31,10 @@
 -(void)ask
 {
 	_asked = YES;
+	if(_responsedWithAccept)
+	{
+		return;
+	}
 	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Call Request"
 													message:@"You have a pending call request"
 												   delegate:self

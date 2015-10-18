@@ -56,6 +56,14 @@
 	return self;
 }
 
+-(void)viewWillLayoutSubviews
+{
+	[super viewWillLayoutSubviews];
+	
+	CGRect frame = self.view.frame;
+	[_loadingOverlayView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+}
+
 -(CNMutableContact*)contactAddFirstName:(NSString*)firstName lastName:(NSString*)lastName number:(NSString*)number
 {
 	CNMutableContact* contact = [[CNMutableContact alloc] init];
