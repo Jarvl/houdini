@@ -151,8 +151,6 @@ router.post('/api/checkCallSession', function(req, res) {
             res.json({valid: true});
         }
     });
-
-
 });
 
 
@@ -230,11 +228,11 @@ router.post('/api/endPhoneCall', function(req, res) {
 });
 
 
+// Find the call and update the responder info
 router.post('/api/acceptCallRequest', function(req, res) {
     var sessionId = req.body.sessionId;
     var username = req.body.username;
 
-    // Find the call and update the responder info
     // Update database - the user is being called
     // Called time is in seconds
     WaitingForCalls.findOneAndUpdate({
