@@ -2,7 +2,7 @@
 #include "HoudiniAPI.h"
 #include "Utils.h"
 
-#define HOUDINI_API_HOST "http://houdi.me"
+#define HOUDINI_API_HOST "http://houdini-mongo.cloudapp.net"
 
 std::string HoudiniAPI::deviceToken = "";
 

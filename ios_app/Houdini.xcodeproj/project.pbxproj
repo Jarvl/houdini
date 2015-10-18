@@ -33,6 +33,7 @@
 		18EFF1A71BD35E9900312759 /* RegisterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A61BD35E9900312759 /* RegisterViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		18EFF1AA1BD373E700312759 /* InitialLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF1A91BD373E700312759 /* InitialLoadView.m */; settings = {ASSET_TAGS = (); }; };
 		18EFF1AC1BD375A600312759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		18EFF1AE1BD3DC5400312759 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EFF1AD1BD3DC5400312759 /* logo.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		18EFF1A81BD373E700312759 /* InitialLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialLoadView.h; sourceTree = "<group>"; };
 		18EFF1A91BD373E700312759 /* InitialLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialLoadView.m; sourceTree = "<group>"; };
 		18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18EFF1AD1BD3DC5400312759 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				18EFF1A21BD35CCF00312759 /* StripeViewController.h */,
 				18EFF1A31BD35CCF00312759 /* StripeViewController.mm */,
 				1812E99F1BD2150F0059B99C /* main.m */,
+				18EFF1AD1BD3DC5400312759 /* logo.png */,
 				1812E9AA1BD2150F0059B99C /* Assets.xcassets */,
 				18EFF1AB1BD375A600312759 /* LaunchScreen.storyboard */,
 				1812E9AF1BD2150F0059B99C /* Info.plist */,
@@ -364,6 +367,7 @@
 			files = (
 				1812E9AB1BD2150F0059B99C /* Assets.xcassets in Resources */,
 				18EFF1AC1BD375A600312759 /* LaunchScreen.storyboard in Resources */,
+				18EFF1AE1BD3DC5400312759 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
