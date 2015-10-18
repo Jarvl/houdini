@@ -60,7 +60,18 @@ router.get('/', function(req, res, next) {
  * Just a placeholder
 **/
 router.get('/api', function(req, res) {
-    res.sendStatus(200);
+    var test = req.query.test;
+
+    Users.findOne({
+        username: test
+    }, function(err, user) {
+        agent.createMessage()
+            .device(user.deviceToken)
+            .alert('Hello Universe!')
+            .send();
+
+        res.sendStatus(200);
+    });
 });
 
 
