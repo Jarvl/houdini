@@ -220,7 +220,7 @@ router.post('/api/endPhoneCall', function(req, res) {
                 console.log(charge);
                 res.json({
                     paid: true,
-                    charged: ""
+                    charged: charge
                 });
             });
         });
