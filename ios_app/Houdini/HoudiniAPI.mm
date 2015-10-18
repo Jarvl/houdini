@@ -4,7 +4,9 @@
 
 #define HOUDINI_API_HOST "http://houdini-mongo.cloudapp.net"
 
-void HoudiniAPI::login(const std::string& username, const std::string& password, std::function<void(BOOL, NSError*)> onfinish)
+std::string HoudiniAPI::deviceToken = "";
+
+void HoudiniAPI::login(const std::string& username, const std::string& password, std::function<void(bool, NSError*)> onfinish)
 {
 	NSString* username_str = [NSString stringWithUTF8String:username.c_str()];
 	NSString* password_str = [NSString stringWithUTF8String:password.c_str()];
@@ -52,7 +54,7 @@ void HoudiniAPI::login(const std::string& username, const std::string& password,
 	});
 }
 
-void HoudiniAPI::requestPhoneCall(const std::string& phone_number, std::function<void(BOOL, NSError*)> onfinish)
+void HoudiniAPI::requestPhoneCall(const std::string& phone_number, std::function<void(bool, NSError*)> onfinish)
 {
 	NSString* phone_number_str = [NSString stringWithUTF8String:phone_number.c_str()];
 	
@@ -104,6 +106,7 @@ void HoudiniAPI::setAvailable(bool available, std::function<void(NSError*)> onfi
 	
 	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
 	[json_dict setObject:value forKey:@"available"];
+	[json_dict setObject:[NSString stringWithUTF8String:deviceToken.c_str()] forKey:@"deviceToken"];
 	NSData* json_data = utils::json_serialize(json_dict);
 	
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/setAvailable"]]];
@@ -147,4 +150,9 @@ void HoudiniAPI::isAvailable(std::function<void(bool, NSError*)> onfinish)
 			}
 		}
 	});
+}
+
+void HoudiniAPI::setDeviceToken(const std::string& token)
+{
+	deviceToken = token;
 }

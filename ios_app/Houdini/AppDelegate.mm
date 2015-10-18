@@ -3,6 +3,7 @@
 #import "MainViewController.h"
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#include "HoudiniAPI.h"
 
 @interface AppDelegate()
 @end
@@ -12,7 +13,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-	[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+	UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+	UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+	[application registerUserNotificationSettings:settings];
+	[application registerForRemoteNotifications];
+	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
 	MainViewController* mainViewController = [[MainViewController alloc] initWithRootViewController:loginViewController];
@@ -27,10 +32,18 @@
     return YES;
 }
 
-- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
 	NSLog(@"Did Register for Remote Notifications with Device Token (%@)", deviceToken);
+	NSString * token = [NSString stringWithFormat:@"%@", deviceToken];
+	//Format token as you need:
+	token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+	token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+	token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+	[[NSUserDefaults standardUserDefaults] setObject:token forKey:@"apnsToken"];
+	
+	HoudiniAPI::setDeviceToken(std::string([token UTF8String], [token length]));
 }
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
 	NSLog(@"Did Fail to Register for Remote Notifications");
 	NSLog(@"%@, %@", error, error.localizedDescription);
 }
