@@ -180,7 +180,7 @@
 	[_signupButton setEnabled:NO];
 	[_loadingView setHidden:NO];
 	[_loadingView startAnimating];
-	HoudiniAPI::signup([username UTF8String], [password UTF8String], [firstName UTF8String], [lastName UTF8String], [self](bool success, const std::string& url, const std::string& error_desc, NSError* error){
+	HoudiniAPI::signup([username UTF8String], [password UTF8String], [firstName UTF8String], [lastName UTF8String], [self, username](bool success, const std::string& url, const std::string& passwordHash, const std::string& error_desc, NSError* error){
 		[_usernameField setEnabled:YES];
 		[_passwordField setEnabled:YES];
 		[_confirmPasswordField setEnabled:YES];
@@ -193,6 +193,12 @@
 		if(success)
 		{
 			NSLog(@"signup successful");
+			
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			[userDefaults setObject:username forKey:@"username"];
+			[userDefaults setObject:[NSString stringWithUTF8String:passwordHash.c_str()] forKey:@"passwordHash"];
+			[userDefaults synchronize];
+			
 			StripeViewController* stripeViewController = [[StripeViewController alloc] initWithURL:[NSString stringWithUTF8String:url.c_str()]];
 			[self.navigationController pushViewController:stripeViewController animated:YES];
 		}

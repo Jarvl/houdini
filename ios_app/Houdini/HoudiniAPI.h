@@ -9,9 +9,8 @@
 class HoudiniAPI
 {
 public:
-	static void login(const std::string& username, const std::string& password, std::function<void(bool success, NSError* error)> onfinish);
-	static void signup(const std::string& username, const std::string& password, const std::string& first_name, const std::string& last_name, std::function<void(bool success, const std::string& url, const std::string& error_desc, NSError* error)> onfinish);
-	static void isLoggedIn(std::function<void(bool logged_in, NSError* error)> onfinish);
+	static void login(const std::string& username, const std::string& password, std::function<void(bool success, const std::string& passwordHash, NSError* error)> onfinish);
+	static void signup(const std::string& username, const std::string& password, const std::string& first_name, const std::string& last_name, std::function<void(bool success, const std::string& url, const std::string& passwordHash, const std::string& error_desc, NSError* error)> onfinish);
 	
 	static void requestPhoneCall(const std::string& phone_number, std::function<void(bool success, NSError* error)> onfinish);
 	

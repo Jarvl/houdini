@@ -12,7 +12,5 @@
 
 -(BOOL)beginTrackingCallToNumber:(NSString*)number;
 
--(BOOL)loginRequired;
-
 @end
 

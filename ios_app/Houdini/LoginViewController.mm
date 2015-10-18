@@ -88,7 +88,7 @@
 	[_loadingView setHidden:NO];
 	[_loadingView startAnimating];
 	
-	HoudiniAPI::login([username UTF8String], [password UTF8String], [self](bool success, NSError* error){
+	HoudiniAPI::login([username UTF8String], [password UTF8String], [self, username](bool success, const std::string& passwordHash, NSError* error){
 		[_usernameField setEnabled:YES];
 		[_passwordField setEnabled:YES];
 		[_loginButton setEnabled:YES];
@@ -98,6 +98,11 @@
 		
 		if(success)
 		{
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			[userDefaults setObject:username forKey:@"username"];
+			[userDefaults setObject:[NSString stringWithUTF8String:passwordHash.c_str()] forKey:@"passwordHash"];
+			[userDefaults synchronize];
+			
 			if(self.delegate!=nil && [self.delegate respondsToSelector:@selector(loginViewControllerDidSuccessfullyLogin:)])
 			{
 				[self.delegate loginViewControllerDidSuccessfullyLogin:self];
