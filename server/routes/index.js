@@ -166,9 +166,9 @@ router.post('/api/checkCallSession', function(req, res) {
 **/
 router.post('/api/endPhoneCall', function(req, res) {
     // Send bad request if time or sessionId doesn't exist
-    if (!req.body.seconds || !req.body.sessionId || !req.session.username) {
+    /*if (!req.body.seconds || !req.body.sessionId || !req.session.username) {
         res.send("false");
-    }
+    }*/
 
     var seconds = req.body.seconds;
     var sess = req.session;
