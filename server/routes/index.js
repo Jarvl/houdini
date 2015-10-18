@@ -205,7 +205,7 @@ router.post('/api/endPhoneCall', function(req, res) {
 
         reqUserQuery.then(function(user) {
             reqUserStripeCode = user.stripeCode;
-
+/*
             // We charge 50 cents a minute with a 10% application fee
             var toCharge = Math.ceil(50 * (seconds / 60));
             var appFee = Math.ceil(toCharge * .1);
@@ -223,6 +223,9 @@ router.post('/api/endPhoneCall', function(req, res) {
                     paid: true,
                     charged: charge
                 });
+            });*/
+            res.json({
+                paid: true
             });
         });
     });
