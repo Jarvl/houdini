@@ -226,7 +226,7 @@ router.post('/api/endPhoneCall', function(req, res) {
             });*/
             res.json({
                 paid: true,
-                charged: "$2"
+                charged: "2"
             });
         });
     });
