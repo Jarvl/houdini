@@ -134,7 +134,7 @@
 		}
 		else if([buttonTitle isEqualToString:@"Decline"])
 		{
-			_pendingSessionId = nil;
+			//_pendingSessionId = nil;
 			NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 			[userDefaults removeObjectForKey:@"request_call_session_id"];
 			[userDefaults synchronize];

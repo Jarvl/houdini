@@ -163,9 +163,21 @@
 																  otherButtonTitles:@"OK", nil];
 							[alert show];
 						}
+						else
+						{
+							NSLog(@"sent availability");
+						}
 					});
 				}
+				else
+				{
+					NSLog(@"sent availability");
+				}
 			});
+		}
+		else
+		{
+			NSLog(@"sent availability");
 		}
 	});
 }
