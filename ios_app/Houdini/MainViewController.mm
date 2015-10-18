@@ -3,12 +3,13 @@
 #import "HomeViewController.h"
 #import "InitialLoadView.h"
 #include "HoudiniAPI.h"
+#include <thread>
 
 @interface MainViewController()
 {
-	CallMonitor* _callMonitor;
 	InitialLoadView* _loadingOverlayView;
 }
+-(void)hideLoadingOverlayAnimated;
 @end
 
 @implementation MainViewController
@@ -17,8 +18,6 @@
 {
 	if(self = [super initWithRootViewController:rootViewController])
 	{
-		_callMonitor = [[CallMonitor alloc] init];
-		_callMonitor.delegate = self;
 		[self setNavigationBarHidden:YES];
 		
 		if([WCSession isSupported])
@@ -32,19 +31,27 @@
 		
 		_loadingOverlayView = [[InitialLoadView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 		[self.view addSubview:_loadingOverlayView];
-		HoudiniAPI::isLoggedIn([self](bool logged_in, NSError* error){
-			if(logged_in)
-			{
-				HomeViewController* homeViewController = [[HomeViewController alloc] init];
-				[self pushViewController:homeViewController animated:NO];
-			}
-			[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(){
-				[_loadingOverlayView setAlpha:0.0];
-			} completion:^(BOOL finished){
-				[_loadingOverlayView removeFromSuperview];
-				[_loadingOverlayView setAlpha:1.0];
-			}];
-		});
+		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+		NSString* username = [userDefaults objectForKey:@"username"];
+		NSString* passwordHash = [userDefaults objectForKey:@"passwordHash"];
+		if(username==nil || passwordHash==nil)
+		{
+			std::thread([self]{
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				[self performSelectorOnMainThread:@selector(hideLoadingOverlayAnimated) withObject:nil waitUntilDone:NO];
+			}).detach();
+		}
+		else
+		{
+			HoudiniAPI::login([username UTF8String], [passwordHash UTF8String], [self](bool success, const std::string& passwordHash, NSError* error){
+				if(success)
+				{
+					HomeViewController* homeViewController = [[HomeViewController alloc] init];
+					[self pushViewController:homeViewController animated:NO];
+				}
+				[self hideLoadingOverlayAnimated];
+			});
+		}
 	}
 	return self;
 }
@@ -84,31 +91,14 @@
 	[contactStore executeSaveRequest:saveRequest error:&error];
 }
 
--(BOOL)beginTrackingCallToNumber:(NSString *)number
+-(void)hideLoadingOverlayAnimated
 {
-	return [_callMonitor call:number];
-}
-
--(BOOL)loginRequired
-{
-	//TODO check if logging in is necessary
-	return YES;
-}
-
-
--(void)callMonitor:(CallMonitor*)callMonitor didBeginDialingCall:(CTCall*)call
-{
-	NSLog(@"dialing");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didConnectCall:(CTCall*)call
-{
-	NSLog(@"connected");
-}
-
--(void)callMonitor:(CallMonitor*)callMonitor didDisconnectCall:(CTCall *)call withTotalCallTime:(double)seconds
-{
-	NSLog(@"call lasted %f seconds", seconds);
+	[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(){
+		[_loadingOverlayView setAlpha:0.0];
+	} completion:^(BOOL finished){
+		[_loadingOverlayView removeFromSuperview];
+		[_loadingOverlayView setAlpha:1.0];
+	}];
 }
 
 -(void)loginViewControllerDidSuccessfullyLogin:(LoginViewController*)loginViewController
@@ -117,7 +107,7 @@
 	[self pushViewController:homeViewController animated:YES];
 }
 
--(void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id>*)message
+-(void)session:(WCSession*)session didReceiveMessage:(NSDictionary<NSString *,id>*)message
 {
 	NSString* action = [message objectForKey:@"action"];
 	if([action isEqualToString:@"requestcall"])

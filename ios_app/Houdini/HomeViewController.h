@@ -1,7 +1,8 @@
 
 #import <UIKit/UIKit.h>
+#import "CallMonitor.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<CallMonitorDelegate, UIAlertViewDelegate>
 @property (nonatomic, readonly) UISwitch* availabilitySwitch;
 @property (nonatomic, readonly) UITextField* phoneNumberField;
 @property (nonatomic, readonly) UIButton* saveButton;

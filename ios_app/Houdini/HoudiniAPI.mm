@@ -6,7 +6,7 @@
 
 std::string HoudiniAPI::deviceToken = "";
 
-void HoudiniAPI::login(const std::string& username, const std::string& password, std::function<void(bool, NSError*)> onfinish)
+void HoudiniAPI::login(const std::string& username, const std::string& password, std::function<void(bool, const std::string&, NSError*)> onfinish)
 {
 	NSString* username_str = [NSString stringWithUTF8String:username.c_str()];
 	NSString* password_str = [NSString stringWithUTF8String:password.c_str()];
@@ -25,13 +25,15 @@ void HoudiniAPI::login(const std::string& username, const std::string& password,
 	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
 		if(data!=nil)
 		{
-			NSString* data_str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-			if([data_str isEqualToString:@"true"])
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL success = [[data_dict objectForKey:@"success"] boolValue];
+			NSString* passwordHash = [data_dict objectForKey:@"password"];
+			if(success)
 			{
 				NSLog(@"login successful");
 				if(onfinish)
 				{
-					onfinish(true, nil);
+					onfinish(true, [passwordHash UTF8String], nil);
 				}
 			}
 			else
@@ -39,7 +41,7 @@ void HoudiniAPI::login(const std::string& username, const std::string& password,
 				NSLog(@"login failed");
 				if(onfinish)
 				{
-					onfinish(false, nil);
+					onfinish(false, "", nil);
 				}
 			}
 		}
@@ -48,13 +50,13 @@ void HoudiniAPI::login(const std::string& username, const std::string& password,
 			NSLog(@"error sending login request");
 			if(onfinish)
 			{
-				onfinish(false, error);
+				onfinish(false, "", error);
 			}
 		}
 	});
 }
 
-void HoudiniAPI::signup(const std::string& username, const std::string& password, const std::string& first_name, const std::string& last_name, std::function<void(bool, const std::string&, const std::string&, NSError* error)> onfinish)
+void HoudiniAPI::signup(const std::string& username, const std::string& password, const std::string& first_name, const std::string& last_name, std::function<void(bool, const std::string&, const std::string&, const std::string&, NSError* error)> onfinish)
 {
 	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
 	[json_dict setObject:[NSString stringWithUTF8String:username.c_str()] forKey:@"username"];
@@ -75,13 +77,14 @@ void HoudiniAPI::signup(const std::string& username, const std::string& password
 			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 			BOOL success = [[data_dict objectForKey:@"success"] boolValue];
 			NSString* url = [data_dict objectForKey:@"url"];
+			NSString* passwordHash = [data_dict objectForKey:@"password"];
 			NSString* errorMessage = [data_dict objectForKey:@"errorMessage"];
 			if(success)
 			{
 				NSLog(@"signup successful");
 				if(onfinish)
 				{
-					onfinish((bool)success, [url UTF8String], "", error);
+					onfinish((bool)success, [url UTF8String], [passwordHash UTF8String], "", error);
 				}
 			}
 			else
@@ -103,7 +106,7 @@ void HoudiniAPI::signup(const std::string& username, const std::string& password
 				
 				if(onfinish)
 				{
-					onfinish((bool)success, "", error_desc, error);
+					onfinish((bool)success, "", "", error_desc, error);
 				}
 			}
 		}
@@ -112,41 +115,7 @@ void HoudiniAPI::signup(const std::string& username, const std::string& password
 			NSLog(@"error sending signup request");
 			if(onfinish)
 			{
-				onfinish(false, "", "", error);
-			}
-		}
-	});
-}
-
-void HoudiniAPI::isLoggedIn(std::function<void(bool logged_in, NSError* error)> onfinish)
-{
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/isLoggedIn"]]];
-	[request setHTTPMethod:@"GET"];
-	
-	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
-		if(data!=nil)
-		{
-			NSString* data_str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-			if([data_str isEqualToString:@"true"])
-			{
-				if(onfinish)
-				{
-					onfinish(true, error);
-				}
-			}
-			else
-			{
-				if(onfinish)
-				{
-					onfinish(false, error);
-				}
-			}
-		}
-		else
-		{
-			if(onfinish)
-			{
-				onfinish(false, error);
+				onfinish(false, "", "", "", error);
 			}
 		}
 	});
@@ -194,6 +163,97 @@ void HoudiniAPI::requestPhoneCall(const std::string& phone_number, std::function
 			{
 				onfinish(false, error);
 			}
+		}
+	});
+}
+
+void HoudiniAPI::checkCallSession(const std::string& sessionId, std::function<void(bool valid, NSError* error)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/checkCallSession"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL valid = [[data_dict objectForKey:@"valid"] boolValue];
+			if(onfinish)
+			{
+				onfinish((bool)valid, error);
+			}
+		}
+		else
+		{
+			onfinish(false, error);
+		}
+	});
+}
+
+void HoudiniAPI::acceptCallRequest(const std::string& username, const std::string& sessionId, std::function<void(bool accepted, const std::string& phone_number, NSError* error)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:username.c_str()] forKey:@"username"];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/acceptCallRequest"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL accepted = [[data_dict objectForKey:@"accepted"] boolValue];
+			NSString* phoneNumber = [data_dict objectForKey:@"phoneNumber"];
+			if(onfinish)
+			{
+				onfinish((bool)accepted, [phoneNumber UTF8String], error);
+			}
+		}
+		else
+		{
+			onfinish(false, "", error);
+		}
+	});
+}
+
+void HoudiniAPI::endPhoneCall(const std::string& sessionId, unsigned long seconds, std::function<void(bool, const std::string&, NSError*)> onfinish)
+{
+	NSMutableDictionary* json_dict = [NSMutableDictionary dictionary];
+	[json_dict setObject:[NSString stringWithUTF8String:sessionId.c_str()] forKey:@"sessionId"];
+	[json_dict setObject:[NSNumber numberWithUnsignedLong:seconds] forKey:@"seconds"];
+	NSData* json_data = utils::json_serialize(json_dict);
+	
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithUTF8String:HOUDINI_API_HOST "/api/endPhoneCall"]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accepts"];
+	[request setHTTPBody:json_data];
+	
+	utils::send_http_request(request, [onfinish](NSURLResponse* response, NSData* data, NSError* error){
+		if(data!=nil)
+		{
+			NSDictionary* data_dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+			BOOL paid = [[data_dict objectForKey:@"paid"] boolValue];
+			NSString* charged = [data_dict objectForKey:@"charged"];
+			if(onfinish)
+			{
+				onfinish((bool)paid, [charged UTF8String], error);
+			}
+		}
+		else
+		{
+			onfinish(false, "", error);
 		}
 	});
 }

@@ -41,7 +41,18 @@
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)notification
 {
-	NSLog(@"got eem");
+	NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+	NSString* notificationType = [notification objectForKey:@"notificationType"];
+	if(notificationType==nil)
+	{
+		return;
+	}
+	else if([notificationType isEqualToString:@"callRequest"])
+	{
+		NSString* sessionId = [notification objectForKey:@"sessionId"];
+		[userDefaults setObject:sessionId forKey:@"request_call_session_id"];
+		[userDefaults synchronize];
+	}
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
